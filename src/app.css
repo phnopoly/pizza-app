@@ -1,0 +1,151 @@
+:root {
+    --background-color: #259150;
+    --text-color: #29323c;
+    --main-font: "Roboto", sans-serif;
+}
+
+body {
+    background: var(--background-color);
+    display: flex;
+}
+
+.top-header {
+    margin-top: 4px;
+    margin-bottom: 24px;
+    color: var(--text-color);
+}
+
+.main-header {
+    max-width: 1250px;
+    position: relative;
+}
+
+.form-container {
+    width: 400px;
+    background-color: white;
+    border-radius: 5px;
+    margin: auto;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 20px;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.success-message {
+    font-family: var(--main-font);
+    padding: 15px;
+    color: var(--text-color);
+    text-align: center;
+}
+
+.form-field {
+    width: 100%;
+    margin: 10px 0 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    border: 0;
+    font-family: var(--main-font);
+}
+
+.center-align {
+    text-align: center;
+}
+
+.birthday-field {
+    width: 50%;
+}
+
+.form-label {
+    color: var(--text-color);
+}
+
+label {
+    font-size: 16px;
+    font-family: var(--main-font);
+}
+
+label {
+    display: block;
+}
+span {
+    font-family: var(--main-font);
+    font-size: 14px;
+    color: red;
+    margin-bottom: 15px;
+    display: block;
+}
+
+input {
+    background: #f2f2f2;
+}
+
+input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.error {
+    border-style: solid;
+    border: 2px solid #ffa4a4;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.register-button {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.register-button:hover {
+    background-position: 100% 0;
+    -o-transition: all 0.4s ease-in-out;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.register-button:focus {
+    outline: none;
+}
+
+.register-button.color {
+    background-image: linear-gradient(
+        to right,
+        #29323c,
+        #485563,
+        #2b5876,
+        #4e4376
+    );
+    box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
+}
+
+.required:after {
+    content: " *";
+    color: red;
+}
+
+.select-items div,
+.select-selected {
+    background: #f2f2f2;
+    border: 1px solid transparent;
+    color: var(--text-color);
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
