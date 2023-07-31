@@ -1,10 +1,17 @@
 const MainMenuHeader = (p) => {
+    const { setPageState } = p;
     return (
-        <div className="main-header">
-            <button className="register-button color">My Orders</button>
-            <button className="register-button color">Sign In</button>
-            <button className="register-button color">Sign Up</button>
-        </div>
+        <header className="main-header">
+            <button className="header-button">My Orders</button>
+            <button className="header-button">Place Order</button>
+            <button className="header-button">Sign In</button>
+            <button
+                className="header-button"
+                onClick={() => setPageState("registration")}
+            >
+                Sign Up
+            </button>
+        </header>
     );
 };
 

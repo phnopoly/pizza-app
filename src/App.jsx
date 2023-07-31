@@ -1,17 +1,7 @@
 import "./app.css";
-import { useState } from "react";
-import RegistrationForm from "./components/RegistrationForm";
-import MainMenuHeader from "./components/MainMenuHeader";
+import Main from "./components/Main";
 
 const App = () => {
-    // mainMenu, myOrders, registration, login
-    const [pageState, setPageState] = useState("mainMenu");
-
-    return (
-        <div>
-            <MainMenuHeader />
-            <RegistrationForm />
-        </div>
-    );
+    return <Main></Main>;
 };
 export default App;

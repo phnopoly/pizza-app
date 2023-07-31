@@ -1,6 +1,9 @@
 :root {
-    --background-color: #259150;
-    --text-color: #29323c;
+    /* https://palettes.shecodes.io/palettes/101 */
+    --text-color: #2f1b41;
+    --background-color: #fecd51;
+    --element-color: #f2f2f2;
+    --trim-color: #9f1e49;
     --main-font: "Roboto", sans-serif;
 }
 
@@ -16,13 +19,21 @@ body {
 }
 
 .main-header {
-    max-width: 1250px;
+    width: 100%;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    background-color: var(--background-color);
     position: relative;
+    display: flex;
+}
+
+.main-header > *:not(:last-child) {
+    margin-right: 12px;
 }
 
 .form-container {
     width: 400px;
-    background-color: white;
+    background-color: var(--element-color);
     border-radius: 5px;
     margin: auto;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
@@ -33,10 +44,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    color: var(--text-color);
 }
 
 .success-message {
-    font-family: var(--main-font);
     padding: 15px;
     color: var(--text-color);
     text-align: center;
@@ -49,6 +60,10 @@ body {
     font-size: 16px;
     border: 0;
     font-family: var(--main-font);
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--text-color);
+    border-radius: 4px;
 }
 
 .center-align {
@@ -92,32 +107,38 @@ input::-webkit-calendar-picker-indicator {
     border-style: solid;
     border: 2px solid #ffa4a4;
 }
+
+.header-button {
+    width: 86px;
+    height: 32px;
+    font-size: small;
+    border-radius: 4px;
+    background-color: var(--trim-color);
+    color: var(--element-color);
+    cursor: pointer;
+    border: none;
+}
+
 * {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 
 .register-button {
     width: 200px;
-    font-size: 16px;
+    font-size: medium;
     font-weight: 600;
-    color: #fff;
+    color: var(--element-color);
     cursor: pointer;
     margin: 20px;
     height: 55px;
     border: none;
     background-size: 300% 100%;
     border-radius: 50px;
-    -o-transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
 
 .register-button:hover {
     background-position: 100% 0;
-    -o-transition: all 0.4s ease-in-out;
-    -webkit-transition: all 0.4s ease-in-out;
     transition: all 0.4s ease-in-out;
 }
 
@@ -125,14 +146,8 @@ input::-webkit-calendar-picker-indicator {
     outline: none;
 }
 
-.register-button.color {
-    background-image: linear-gradient(
-        to right,
-        #29323c,
-        #485563,
-        #2b5876,
-        #4e4376
-    );
+.button-color {
+    background-image: linear-gradient(to right, #29323c, #485563, #2b5876);
     box-shadow: 0 4px 15px 0 rgba(45, 54, 65, 0.75);
 }
 
@@ -143,9 +158,23 @@ input::-webkit-calendar-picker-indicator {
 
 .select-items div,
 .select-selected {
-    background: #f2f2f2;
-    border: 1px solid transparent;
+    background: var(--element-color);
     color: var(--text-color);
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
     cursor: pointer;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+}
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
 }

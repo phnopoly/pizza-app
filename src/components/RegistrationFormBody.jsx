@@ -1,8 +1,8 @@
 const RegistrationFormBody = (p) => {
     const { isSubmitted, values, handleSubmit, handleInputChange } = p;
     return (
-        <form className="register-form" onSubmit={handleSubmit} novalidate>
-            <div>
+        <form className="register-form" onSubmit={handleSubmit} noValidate>
+            <section>
                 <h2 className="top-header">Membership Registration</h2>
                 <label className="form-label required" htmlFor="firstName">
                     First Name
@@ -11,7 +11,7 @@ const RegistrationFormBody = (p) => {
                     className="form-field"
                     type="text"
                     name="firstName"
-                    autocomplete="off"
+                    autoComplete="off"
                     value={values.firstName}
                     onChange={handleInputChange}
                 />
@@ -27,7 +27,7 @@ const RegistrationFormBody = (p) => {
                     className="form-label  form-field"
                     type="text"
                     name="lastName"
-                    autocomplete="off"
+                    autoComplete="off"
                     value={values.lastName}
                     onChange={handleInputChange}
                 />
@@ -39,7 +39,7 @@ const RegistrationFormBody = (p) => {
                     className="  form-field"
                     type="tel"
                     name="phoneNumber"
-                    autocomplete="off"
+                    autoComplete="off"
                     value={values.phoneNumber}
                     onChange={handleInputChange}
                 />
@@ -55,7 +55,7 @@ const RegistrationFormBody = (p) => {
                     className="form-field"
                     type="email"
                     name="email"
-                    autocomplete="off"
+                    autoComplete="off"
                     value={values.email}
                     onChange={handleInputChange}
                 />
@@ -115,12 +115,15 @@ const RegistrationFormBody = (p) => {
                     </span>
                 )}
 
-                <div class="center-align">
-                    <button className="register-button color" type="submit">
+                <section className="center-align">
+                    <button
+                        className="center-align register-button button-color"
+                        type="submit"
+                    >
                         Register
                     </button>
-                </div>
-            </div>
+                </section>
+            </section>
         </form>
     );
 };
