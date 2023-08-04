@@ -12,9 +12,26 @@ body {
     place-content: center;
 }
 
-.top-header {
-    margin-top: 4px;
-    margin-bottom: 24px;
+label {
+    font-size: 16px;
+    font-family: var(--main-font);
+    display: block;
+}
+
+span {
+    font-family: var(--main-font);
+    font-size: 14px;
+    color: red;
+    margin-bottom: 15px;
+    display: block;
+}
+
+input {
+    background: #f2f2f2;
+}
+
+input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
     color: var(--text-color);
 }
 
@@ -34,12 +51,6 @@ body {
     color: var(--text-color);
 }
 
-.success-message {
-    padding: 15px;
-    color: var(--text-color);
-    text-align: center;
-}
-
 .form-field {
     width: 100%;
     margin: 10px 0 10px 0;
@@ -53,46 +64,12 @@ body {
     border-radius: 4px;
 }
 
-.center-align {
-    text-align: center;
-}
-
 .birthday-field {
     width: 50%;
 }
 
 .form-label {
     color: var(--text-color);
-}
-
-label {
-    font-size: 16px;
-    font-family: var(--main-font);
-}
-
-label {
-    display: block;
-}
-span {
-    font-family: var(--main-font);
-    font-size: 14px;
-    color: red;
-    margin-bottom: 15px;
-    display: block;
-}
-
-input {
-    background: #f2f2f2;
-}
-
-input::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    color: var(--text-color);
-}
-
-.error {
-    border-style: solid;
-    border: 2px solid #ffa4a4;
 }
 
 .required:after {

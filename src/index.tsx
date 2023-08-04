@@ -1,11 +1,10 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
-import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { ChakraProvider } from "@chakra-ui/react"
-import { mode } from "@chakra-ui/theme-tools"
-
+import { StyleFunctionProps, mode } from "@chakra-ui/theme-tools"
 import { extendTheme } from "@chakra-ui/react"
+import App from "./App"
 
 const theme = extendTheme({
 	breakpoints: {
@@ -15,15 +14,15 @@ const theme = extendTheme({
 		xl: "1200px",
 	},
 	styles: {
-		global: props => ({
+		global: (props: Record<string, any> | StyleFunctionProps) => ({
 			"html, body": {
-				background: mode("#fecd51")(props),
+				background: mode("#fecd51", "#fecd51")(props),
 			},
 		}),
 	},
 })
 
-const root = ReactDOM.createRoot(document.getElementById("root"))
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
 	<React.StrictMode>
 		<ChakraProvider theme={theme}>

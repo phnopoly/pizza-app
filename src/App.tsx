@@ -3,10 +3,14 @@ import { useState } from "react"
 import RegistrationForm from "./components/RegistrationForm"
 import NavigationHeader from "./components/NavigationHeader"
 import { Image, chakra } from "@chakra-ui/react"
+import React from "react"
+
+export type PageState = "mainMenu" | "myOrders" | "placeOrder" | "login" | "registration"
+export type UseStateReturnNoUndefined<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 
 const App = () => {
-	// mainMenu, myOrders, placeOrder, login, registration
-	const [pageState, setPageState] = useState("mainMenu")
+	const [pageState, setPageState] = useState<PageState>("mainMenu")
+
 	return (
 		<chakra.div>
 			<NavigationHeader setPageState={setPageState} />

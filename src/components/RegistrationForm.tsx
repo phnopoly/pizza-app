@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react"
+import { FormEventHandler, useEffect, useState } from "react"
 import RegistrationFormBody from "./RegistrationFormBody"
 import SuccessModal from "./SuccessModal"
 import { chakra, useDisclosure } from "@chakra-ui/react"
+import React from "react"
+import { PageState, UseStateReturnNoUndefined } from "../App"
 
-const RegistrationForm = p => {
+interface RegistrationFormProps {
+	setPageState: UseStateReturnNoUndefined<PageState>[1]
+}
+
+const RegistrationForm = (p: RegistrationFormProps) => {
 	const { setPageState } = p
-	const [isSubmitted, setSubmitted] = useState(false)
-	const [isValid, setValid] = useState(false)
+	const [isSubmitted, setSubmitted] = useState<boolean>(false)
+	const [isValid, setValid] = useState<boolean>(false)
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	useEffect(() => {
@@ -23,7 +29,7 @@ const RegistrationForm = p => {
 		birthday: "",
 	})
 
-	const handleInputChange = event => {
+	const handleInputChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = event => {
 		event.preventDefault()
 
 		const { name, value } = event.target
@@ -33,7 +39,7 @@ const RegistrationForm = p => {
 		}))
 	}
 
-	const handleSubmit = e => {
+	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
 		e.preventDefault()
 		setSubmitted(true)
 		if (values.firstName && values.phoneNumber && values.email && values.password && values.birthday) {

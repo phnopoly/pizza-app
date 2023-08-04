@@ -1,6 +1,14 @@
 import { Text, Button, Stack } from "@chakra-ui/react"
+import React, { ChangeEventHandler, FormEventHandler } from "react"
 
-const RegistrationFormBody = p => {
+interface RegistrationFormBodyProps {
+	isSubmitted: boolean
+	values: RegistrationFormData
+	handleSubmit: FormEventHandler<HTMLFormElement>
+	handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
+}
+
+const RegistrationFormBody = (p: RegistrationFormBodyProps) => {
 	const { isSubmitted, values, handleSubmit, handleInputChange } = p
 	return (
 		<form className="register-form" onSubmit={handleSubmit} noValidate>

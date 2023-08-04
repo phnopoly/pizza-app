@@ -6,11 +6,20 @@ import {
 	ModalBody,
 	ModalFooter,
 	ModalCloseButton,
+	useDisclosure,
 } from "@chakra-ui/react"
 import React from "react"
+import { PageState, UseStateReturnNoUndefined } from "../App"
 
-const SuccessModal = p => {
-	const { isOpen, onClose, firstName, setPageState } = p
+interface SuccessModalProps {
+	firstName: string
+	isOpen: boolean
+	onClose: ReturnType<typeof useDisclosure>["onClose"]
+	setPageState: UseStateReturnNoUndefined<PageState>[1]
+}
+
+const SuccessModal = (p: SuccessModalProps) => {
+	const { firstName, isOpen, onClose, setPageState } = p
 	return (
 		<Modal
 			size="xs"
