@@ -6,20 +6,13 @@ import {
 	ModalBody,
 	ModalFooter,
 	ModalCloseButton,
-	useDisclosure,
 } from "@chakra-ui/react"
-import React from "react"
-import { PageState, UseStateReturnNoUndefined } from "../App"
+import React, { useContext } from "react"
+import { RegistrationFormContext } from "./RegistrationForm"
 
-interface SuccessModalProps {
-	firstName: string
-	isOpen: boolean
-	onClose: ReturnType<typeof useDisclosure>["onClose"]
-	setPageState: UseStateReturnNoUndefined<PageState>[1]
-}
+const SuccessModal = () => {
+	const { values, isOpen, onClose, setPageState } = useContext(RegistrationFormContext)
 
-const SuccessModal = (p: SuccessModalProps) => {
-	const { firstName, isOpen, onClose, setPageState } = p
 	return (
 		<Modal
 			size="xs"
@@ -34,7 +27,7 @@ const SuccessModal = (p: SuccessModalProps) => {
 				<ModalHeader>Registration Successful!</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
-					<h3>{`Welcome ${firstName}!`}</h3>
+					<h3>{`Welcome ${values.firstName}!`}</h3>
 				</ModalBody>
 
 				<ModalFooter></ModalFooter>

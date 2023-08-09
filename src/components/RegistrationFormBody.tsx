@@ -1,15 +1,10 @@
 import { Text, Button, Stack } from "@chakra-ui/react"
-import React, { ChangeEventHandler, FormEventHandler } from "react"
+import React, { useContext } from "react"
+import { RegistrationFormContext } from "./RegistrationForm"
 
-interface RegistrationFormBodyProps {
-	isSubmitted: boolean
-	values: RegistrationFormData
-	handleSubmit: FormEventHandler<HTMLFormElement>
-	handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
-}
+const RegistrationFormBody = () => {
+	const { isSubmitted, values, handleSubmit, handleInputChange } = useContext(RegistrationFormContext)
 
-const RegistrationFormBody = (p: RegistrationFormBodyProps) => {
-	const { isSubmitted, values, handleSubmit, handleInputChange } = p
 	return (
 		<form className="register-form" onSubmit={handleSubmit} noValidate>
 			<section>
@@ -46,7 +41,7 @@ const RegistrationFormBody = (p: RegistrationFormBodyProps) => {
 					Phone Number
 				</label>
 				<input
-					className="  form-field"
+					className="form-field"
 					type="tel"
 					name="phoneNumber"
 					autoComplete="off"

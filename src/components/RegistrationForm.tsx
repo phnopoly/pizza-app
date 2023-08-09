@@ -1,4 +1,4 @@
-import { FormEventHandler, useEffect, useState } from "react"
+import { ChangeEventHandler, FormEventHandler, createContext, useEffect, useState } from "react"
 import RegistrationFormBody from "./RegistrationFormBody"
 import SuccessModal from "./SuccessModal"
 import { chakra, useDisclosure } from "@chakra-ui/react"
@@ -8,6 +8,28 @@ import { PageState, UseStateReturnNoUndefined } from "../App"
 interface RegistrationFormProps {
 	setPageState: UseStateReturnNoUndefined<PageState>[1]
 }
+
+const defaultFormValues = {
+	firstName: "",
+	lastName: "",
+	phoneNumber: "",
+	email: "",
+	password: "",
+	hearAboutUs: "",
+	birthday: "",
+}
+
+type RegistrationFormContextType = {
+	values: RegistrationFormData
+	isOpen: boolean
+	isSubmitted: boolean
+	onClose: ReturnType<typeof useDisclosure>["onClose"]
+	setPageState: UseStateReturnNoUndefined<PageState>[1]
+	handleSubmit: FormEventHandler<HTMLFormElement>
+	handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
+}
+
+export const RegistrationFormContext = createContext<RegistrationFormContextType>({} as RegistrationFormContextType)
 
 const RegistrationForm = (p: RegistrationFormProps) => {
 	const { setPageState } = p
@@ -19,15 +41,7 @@ const RegistrationForm = (p: RegistrationFormProps) => {
 		isValid && onOpen()
 	}, [isValid, onOpen])
 
-	const [values, setValues] = useState({
-		firstName: "",
-		lastName: "",
-		phoneNumber: "",
-		email: "",
-		password: "",
-		hearAboutUs: "",
-		birthday: "",
-	})
+	const [values, setValues] = useState(defaultFormValues)
 
 	const handleInputChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = event => {
 		event.preventDefault()
@@ -47,16 +61,23 @@ const RegistrationForm = (p: RegistrationFormProps) => {
 		}
 	}
 
+	const contextValue: RegistrationFormContextType = {
+		values,
+		isOpen,
+		isSubmitted,
+		onClose,
+		setPageState,
+		handleSubmit,
+		handleInputChange,
+	}
+
 	return (
-		<chakra.div className="form-container">
-			<SuccessModal firstName={values.firstName} isOpen={isOpen} onClose={onClose} setPageState={setPageState} />
-			<RegistrationFormBody
-				isSubmitted={isSubmitted}
-				values={values}
-				handleSubmit={handleSubmit}
-				handleInputChange={handleInputChange}
-			/>
-		</chakra.div>
+		<RegistrationFormContext.Provider value={contextValue}>
+			<chakra.div className="form-container">
+				<SuccessModal />
+				<RegistrationFormBody />
+			</chakra.div>
+		</RegistrationFormContext.Provider>
 	)
 }
 
