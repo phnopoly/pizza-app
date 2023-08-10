@@ -12,7 +12,7 @@ import { RegistrationFormContext } from "./RegistrationForm"
 import { PageContext } from "../App"
 
 const SuccessModal = () => {
-	const { values, isOpen, onClose } = useContext(RegistrationFormContext)
+	const { isOpen, onClose } = useContext(RegistrationFormContext)
 	const { setPageState } = useContext(PageContext)
 
 	return (
@@ -29,7 +29,7 @@ const SuccessModal = () => {
 				<ModalHeader>Registration Successful!</ModalHeader>
 				<ModalCloseButton />
 				<ModalBody>
-					<h3>{`Welcome ${values.firstName}!`}</h3>
+					<h3>{`Welcome ${"Phong"}!`}</h3>
 				</ModalBody>
 
 				<ModalFooter></ModalFooter>

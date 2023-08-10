@@ -2,8 +2,9 @@ import "./app.css"
 import { createContext, useState } from "react"
 import RegistrationForm from "./components/RegistrationForm"
 import NavigationHeader from "./components/NavigationHeader"
-import { Image, chakra } from "@chakra-ui/react"
+import { Image } from "@chakra-ui/react"
 import React from "react"
+import { Layout } from "./components/Layout"
 
 export type PageState = "mainMenu" | "myOrders" | "placeOrder" | "login" | "registration"
 export type UseStateReturnNoUndefined<T> = [T, React.Dispatch<React.SetStateAction<T>>]
@@ -19,22 +20,20 @@ const App = () => {
 	const [pageState, setPageState] = useState<PageState>("mainMenu")
 
 	return (
-		<PageContext.Provider value={{ pageState, setPageState }}>
-			<chakra.div>
+		<Layout pageTitle="Raj's Pizza App" pageDescription="An app that let's you order pizza!" pageHeading="">
+			<PageContext.Provider value={{ pageState, setPageState }}>
 				<NavigationHeader />
 				{pageState === "mainMenu" ? (
-					<>
-						<Image src="/img/sampleLogo3.jpg" boxSize="full" alt="Logo"></Image>
-						<Image
-							src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80s"
-							alt="Spotlight Pizza"
-						></Image>
-					</>
+					<Image
+						gridColumn="1 / -1"
+						src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80s"
+						alt="Spotlight Pizza"
+					></Image>
 				) : (
 					<RegistrationForm />
 				)}
-			</chakra.div>
-		</PageContext.Provider>
+			</PageContext.Provider>
+		</Layout>
 	)
 }
 

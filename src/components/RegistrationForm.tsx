@@ -1,10 +1,18 @@
-import { ChangeEventHandler, FormEventHandler, createContext, useEffect, useState } from "react"
+import { createContext, useCallback } from "react"
 import RegistrationFormBody from "./RegistrationFormBody"
 import SuccessModal from "./SuccessModal"
-import { chakra, useDisclosure } from "@chakra-ui/react"
+import { Button, Stack, useDisclosure, Text } from "@chakra-ui/react"
 import React from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import Form from "./Form"
+import { responsiveGridEdges } from "../utils"
 
-const defaultFormValues = {
+type RegistrationFormContextType = {
+	isOpen: boolean
+	onClose: ReturnType<typeof useDisclosure>["onClose"]
+}
+
+const defaultFormValues: RegistrationFormData = {
 	firstName: "",
 	lastName: "",
 	phoneNumber: "",
@@ -14,62 +22,48 @@ const defaultFormValues = {
 	birthday: "",
 }
 
-type RegistrationFormContextType = {
-	values: RegistrationFormData
-	isOpen: boolean
-	isSubmitted: boolean
-	onClose: ReturnType<typeof useDisclosure>["onClose"]
-	handleSubmit: FormEventHandler<HTMLFormElement>
-	handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
-}
-
 export const RegistrationFormContext = createContext<RegistrationFormContextType>({} as RegistrationFormContextType)
 
 const RegistrationForm = () => {
-	const [isSubmitted, setSubmitted] = useState<boolean>(false)
-	const [isValid, setValid] = useState<boolean>(false)
-	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { isOpen, onClose } = useDisclosure()
 
-	useEffect(() => {
-		isValid && onOpen()
-	}, [isValid, onOpen])
-
-	const [values, setValues] = useState(defaultFormValues)
-
-	const handleInputChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = event => {
-		event.preventDefault()
-
-		const { name, value } = event.target
-		setValues(values => ({
-			...values,
-			[name]: value,
-		}))
-	}
-
-	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
-		e.preventDefault()
-		setSubmitted(true)
-		if (values.firstName && values.phoneNumber && values.email && values.password && values.birthday) {
-			setValid(true)
-		}
-	}
+	const formMethods = useForm<RegistrationFormData>({
+		defaultValues: defaultFormValues,
+	})
+	const { handleSubmit } = formMethods
 
 	const contextValue: RegistrationFormContextType = {
-		values,
 		isOpen,
-		isSubmitted,
 		onClose,
-		handleSubmit,
-		handleInputChange,
 	}
 
+	const onSubmit = useCallback((data: RegistrationFormData) => console.log("submitted" + data), [])
+
 	return (
-		<RegistrationFormContext.Provider value={contextValue}>
-			<chakra.div className="form-container">
-				<SuccessModal />
-				<RegistrationFormBody />
-			</chakra.div>
-		</RegistrationFormContext.Provider>
+		<FormProvider {...formMethods}>
+			<RegistrationFormContext.Provider value={contextValue}>
+				<Form onSubmit={handleSubmit(data => onSubmit(data))}>
+					<SuccessModal />
+					<Text fontSize="xl" gridColumn="1 / -1">
+						Raj's Royal Pizza Registration
+					</Text>
+					<RegistrationFormBody />
+					<Stack
+						gridColumn={{ base: "1 / -1", md: "5 / -1", lg: "7 / -1" }}
+						direction="row"
+						spacing={responsiveGridEdges}
+						placeContent="end"
+					>
+						<Button colorScheme="blue" variant="link" display="block">
+							Cancel
+						</Button>
+						<Button type="submit" colorScheme="blue" display="block">
+							Submit
+						</Button>
+					</Stack>
+				</Form>
+			</RegistrationFormContext.Provider>
+		</FormProvider>
 	)
 }
 
