@@ -37,7 +37,7 @@ const RegistrationForm = () => {
 		onClose,
 	}
 
-	const onSubmit = useCallback((data: RegistrationFormData) => console.log("submitted" + data), [])
+	const onSubmit = useCallback((data: RegistrationFormData) => console.log(JSON.stringify(data)), [])
 
 	return (
 		<FormProvider {...formMethods}>
@@ -53,11 +53,12 @@ const RegistrationForm = () => {
 						direction="row"
 						spacing={responsiveGridEdges}
 						placeContent="end"
+						alignSelf="center"
 					>
-						<Button colorScheme="blue" variant="link" display="block">
+						<Button colorScheme="blue" variant="link">
 							Cancel
 						</Button>
-						<Button type="submit" colorScheme="blue" display="block">
+						<Button type="submit" colorScheme="blue">
 							Submit
 						</Button>
 					</Stack>
