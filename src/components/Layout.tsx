@@ -44,7 +44,7 @@ export const Layout: React.FC<LayoutProps> = (p: LayoutProps) => {
 			alignContent="start"
 			gridGap={responsiveGridEdges}
 			gridTemplateColumns={responsiveGridColumns}
-			w="full"
+			w={{ base: "full", md: "full", lg: "900px" }}
 			minH="100vh"
 			p="24px"
 			lineHeight="normal"

@@ -52,8 +52,8 @@ const NavigationHeader = () => {
 				</HStack>
 				<Flex>
 					<Menu>
-						<MenuButton as={Button} rounded="full" variant="link" cursor="pointer" minW={0}>
-							<Avatar size="sm" src="/img/profilePic3.jpg" />
+						<MenuButton as={Button} rounded="full" variant="link" cursor="pointer" mb="0px">
+							<Avatar size="sm" src="/img/profilePic3.jpg" mb="0px" />
 						</MenuButton>
 						<MenuList>
 							<MenuItem>Account Settings</MenuItem>
