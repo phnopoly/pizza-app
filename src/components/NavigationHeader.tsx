@@ -15,10 +15,11 @@ import {
 	Stack,
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
-import React from "react"
+import React, { useContext } from "react"
+import { PageContext } from "App"
 
-const NavigationHeader = (p: any) => {
-	const { setPageState } = p
+const NavigationHeader = () => {
+	const { setPageState } = useContext(PageContext)
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	const links = [

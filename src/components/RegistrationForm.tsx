@@ -3,11 +3,6 @@ import RegistrationFormBody from "./RegistrationFormBody"
 import SuccessModal from "./SuccessModal"
 import { chakra, useDisclosure } from "@chakra-ui/react"
 import React from "react"
-import { PageState, UseStateReturnNoUndefined } from "../App"
-
-interface RegistrationFormProps {
-	setPageState: UseStateReturnNoUndefined<PageState>[1]
-}
 
 const defaultFormValues = {
 	firstName: "",
@@ -24,15 +19,13 @@ type RegistrationFormContextType = {
 	isOpen: boolean
 	isSubmitted: boolean
 	onClose: ReturnType<typeof useDisclosure>["onClose"]
-	setPageState: UseStateReturnNoUndefined<PageState>[1]
 	handleSubmit: FormEventHandler<HTMLFormElement>
 	handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
 }
 
 export const RegistrationFormContext = createContext<RegistrationFormContextType>({} as RegistrationFormContextType)
 
-const RegistrationForm = (p: RegistrationFormProps) => {
-	const { setPageState } = p
+const RegistrationForm = () => {
 	const [isSubmitted, setSubmitted] = useState<boolean>(false)
 	const [isValid, setValid] = useState<boolean>(false)
 	const { isOpen, onOpen, onClose } = useDisclosure()
@@ -66,7 +59,6 @@ const RegistrationForm = (p: RegistrationFormProps) => {
 		isOpen,
 		isSubmitted,
 		onClose,
-		setPageState,
 		handleSubmit,
 		handleInputChange,
 	}

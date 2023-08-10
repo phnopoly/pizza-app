@@ -9,9 +9,11 @@ import {
 } from "@chakra-ui/react"
 import React, { useContext } from "react"
 import { RegistrationFormContext } from "./RegistrationForm"
+import { PageContext } from "App"
 
 const SuccessModal = () => {
-	const { values, isOpen, onClose, setPageState } = useContext(RegistrationFormContext)
+	const { values, isOpen, onClose } = useContext(RegistrationFormContext)
+	const { setPageState } = useContext(PageContext)
 
 	return (
 		<Modal
