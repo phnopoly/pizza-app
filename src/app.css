@@ -12,7 +12,6 @@ body {
     place-content: center;
 }
 
-
 span {
     font-family: var(--main-font);
     font-size: 14px;
@@ -20,7 +19,6 @@ span {
     margin-bottom: 15px;
     display: block;
 }
-
 
 input::-webkit-calendar-picker-indicator {
     cursor: pointer;
@@ -37,8 +35,6 @@ input::-webkit-calendar-picker-indicator {
     border-bottom-right-radius: 4px;
     padding: 24px;
 }
-
-
 
 .form-label {
     color: var(--text-color);
