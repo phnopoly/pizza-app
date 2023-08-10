@@ -65,8 +65,8 @@ const NavigationHeader = () => {
 			</Flex>
 
 			{isOpen ? (
-				<Box pb={4} display={{ md: "none" }}>
-					<Stack as="nav" spacing={4}>
+				<Box pb="4px" display={{ md: "none" }}>
+					<Stack as="nav" spacing="4px">
 						{links.map(link => (
 							<NavLink key={link.label} onClick={link.onClick}>
 								{link.label}
