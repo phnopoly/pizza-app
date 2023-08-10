@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import React, { useContext } from "react"
-import { PageContext } from "App"
+import { PageContext } from "../App"
 
 const NavigationHeader = () => {
 	const { setPageState } = useContext(PageContext)
