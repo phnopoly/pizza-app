@@ -1,4 +1,4 @@
-import { createContext, useCallback } from "react"
+import { createContext, useCallback, useContext } from "react"
 import RegistrationFormBody from "./RegistrationFormBody"
 import SuccessModal from "./SuccessModal"
 import { Button, Stack, useDisclosure, Text } from "@chakra-ui/react"
@@ -6,6 +6,7 @@ import React from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import Form from "./Form"
 import { responsiveGridEdges } from "../utils"
+import { PageContext } from "../App"
 
 type RegistrationFormContextType = {
 	isOpen: boolean
@@ -27,6 +28,7 @@ export const RegistrationFormContext = createContext<RegistrationFormContextType
 const RegistrationForm = () => {
 	const { isOpen, onClose } = useDisclosure()
 
+	const { setPageState } = useContext(PageContext)
 	const formMethods = useForm<RegistrationFormData>({
 		defaultValues: defaultFormValues,
 	})
@@ -55,7 +57,7 @@ const RegistrationForm = () => {
 						placeContent="end"
 						alignSelf="center"
 					>
-						<Button colorScheme="blue" variant="link">
+						<Button colorScheme="blue" variant="link" onClick={() => setPageState("mainMenu")}>
 							Cancel
 						</Button>
 						<Button type="submit" colorScheme="blue">
