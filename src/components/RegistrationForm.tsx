@@ -26,7 +26,7 @@ const defaultFormValues: RegistrationFormData = {
 export const RegistrationFormContext = createContext<RegistrationFormContextType>({} as RegistrationFormContextType)
 
 const RegistrationForm = () => {
-	const { isOpen, onClose } = useDisclosure()
+	const { isOpen, onClose, onOpen } = useDisclosure()
 
 	const { setPageState } = useContext(PageContext)
 	const formMethods = useForm<RegistrationFormData>({
@@ -39,7 +39,10 @@ const RegistrationForm = () => {
 		onClose,
 	}
 
-	const onSubmit = useCallback((data: RegistrationFormData) => console.log(JSON.stringify(data)), [])
+	const onSubmit = useCallback((data: RegistrationFormData) => {
+		console.log(JSON.stringify(data))
+		onOpen()
+	}, [])
 
 	return (
 		<FormProvider {...formMethods}>
