@@ -1,12 +1,16 @@
 import { Input, Select } from "@chakra-ui/react"
 import React from "react"
 import { FormInput } from "./FormInput"
-import { Controller, useFormContext } from "react-hook-form"
+import { Controller, useFormContext, FieldErrors } from "react-hook-form"
 
 const RegistrationFormBody = () => {
 	const leftFieldGridCol = { base: "1 / -1", md: "1 / 5", lg: "1 / 7" }
 	const rightFieldGridCol = { base: "1 / -1", md: "5 / -1", lg: "7 / -1" }
-	const { control } = useFormContext<RegistrationFormData>()
+	const { control, formState } = useFormContext<RegistrationFormData>()
+	const { errors } = formState
+
+	const getValidationState = (fieldErrors: FieldErrors<RegistrationFormData> | undefined, field: string): boolean =>
+		fieldErrors?.[field] ? true : false
 
 	return (
 		<>
@@ -18,7 +22,9 @@ const RegistrationFormBody = () => {
 						required: "Please enter your name",
 						maxLength: 50,
 					}}
-					render={({ field: { ref, ...field } }) => <Input {...field} ref={ref} />}
+					render={({ field: { ref, ...field } }) => (
+						<Input {...field} ref={ref} isInvalid={getValidationState(errors, "firstName")} />
+					)}
 				/>
 			</FormInput>
 
@@ -29,7 +35,9 @@ const RegistrationFormBody = () => {
 					rules={{
 						required: "Please enter your last name",
 					}}
-					render={({ field: { ref, ...field } }) => <Input {...field} ref={ref} />}
+					render={({ field: { ref, ...field } }) => (
+						<Input {...field} ref={ref} isInvalid={getValidationState(errors, "lastName")} />
+					)}
 				/>
 			</FormInput>
 
@@ -49,7 +57,9 @@ const RegistrationFormBody = () => {
 						required: "Please enter your email address",
 						maxLength: 50,
 					}}
-					render={({ field: { ref, ...field } }) => <Input {...field} type="email" ref={ref} />}
+					render={({ field: { ref, ...field } }) => (
+						<Input {...field} type="email" ref={ref} isInvalid={getValidationState(errors, "email")} />
+					)}
 				/>
 			</FormInput>
 
@@ -79,7 +89,9 @@ const RegistrationFormBody = () => {
 						required: "Please enter your birthday",
 						max: new Date().toISOString().split("T")[0],
 					}}
-					render={({ field: { ref, ...field } }) => <Input {...field} type="date" ref={ref} />}
+					render={({ field: { ref, ...field } }) => (
+						<Input {...field} type="date" ref={ref} isInvalid={getValidationState(errors, "birthday")} />
+					)}
 				/>
 			</FormInput>
 		</>

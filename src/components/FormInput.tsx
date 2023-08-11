@@ -5,7 +5,7 @@ interface FormInputProps {
 	labelText: string
 	labelId: string
 	required?: boolean
-	gridColumn?: { base: string; md: string; lg: string } | string
+	gridColumn?: GridColumn | string
 	children: React.ReactElement<React.InputHTMLAttributes<HTMLElement>>
 }
 
