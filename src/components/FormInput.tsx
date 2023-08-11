@@ -28,7 +28,7 @@ export const FormInput: React.FC<FormInputProps> = p => {
 				"aria-labelledby": `${labelId} ${children.props["aria-labelledby"] ?? ""}`.trim(),
 				...input,
 			})}
-			<FormHelperText color="error" fontSize="error" mt={0} overflowWrap="normal" w="full" role="alert">
+			<FormHelperText color="error" fontSize="error" mt="4px" overflowWrap="normal" w="full" role="alert">
 				{errorMessage}
 			</FormHelperText>
 		</FormControl>

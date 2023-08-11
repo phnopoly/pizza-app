@@ -23,11 +23,19 @@ const RegistrationFormBody = () => {
 					name="firstName"
 					control={control}
 					rules={{
-						required: "Please enter your name",
-						maxLength: 50,
+						required: "Please enter your first name",
+						pattern: {
+							value: /^[a-z ,.'-]+$/i,
+							message: "Please enter a valid first name",
+						},
 					}}
 					render={({ field: { ref, ...field } }) => (
-						<Input {...field} ref={ref} isInvalid={getValidationState(errors, "firstName")} />
+						<Input
+							{...field}
+							maxLength={24}
+							ref={ref}
+							isInvalid={getValidationState(errors, "firstName")}
+						/>
 					)}
 				/>
 			</FormInput>
@@ -41,8 +49,14 @@ const RegistrationFormBody = () => {
 				<Controller
 					name="lastName"
 					control={control}
+					rules={{
+						pattern: {
+							value: /^[a-z ,.'-]+$/i,
+							message: "Please enter a valid last name",
+						},
+					}}
 					render={({ field: { ref, ...field } }) => (
-						<Input {...field} ref={ref} isInvalid={getValidationState(errors, "lastName")} />
+						<Input {...field} maxLength={24} ref={ref} isInvalid={getValidationState(errors, "lastName")} />
 					)}
 				/>
 			</FormInput>
@@ -59,10 +73,19 @@ const RegistrationFormBody = () => {
 					control={control}
 					rules={{
 						required: "Please enter your email address",
-						maxLength: 50,
+						pattern: {
+							value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/,
+							message: "Please enter a valid email address",
+						},
 					}}
 					render={({ field: { ref, ...field } }) => (
-						<Input {...field} type="email" ref={ref} isInvalid={getValidationState(errors, "email")} />
+						<Input
+							{...field}
+							type="email"
+							maxLength={50}
+							ref={ref}
+							isInvalid={getValidationState(errors, "email")}
+						/>
 					)}
 				/>
 			</FormInput>
@@ -78,18 +101,18 @@ const RegistrationFormBody = () => {
 					name="password"
 					control={control}
 					rules={{
-						required: "Please enter a valid password",
+						required: "Please enter a password",
 						pattern: {
-							value: /^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{12,}$/,
-							message: "Password must have 1 upper, 1 lower, and 1 digit",
+							value: /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}:;<>,.?/~_+-=|]).{8,32}$/,
+							message: "Password must have a lowercase letter, an uppercase letter, and a number",
 						},
 						minLength: {
-							value: 12,
-							message: "Password must be between 12 and 30 characters",
+							value: 8,
+							message: "Password must be between 8 and 32 characters",
 						},
 						maxLength: {
-							value: 30,
-							message: "Password must be between 12 and 30 characters",
+							value: 32,
+							message: "Password must be between 8 and 32 characters",
 						},
 					}}
 					render={({ field: { ref, ...field } }) => (
@@ -114,11 +137,11 @@ const RegistrationFormBody = () => {
 					control={control}
 					rules={{
 						pattern: {
-							value: /^([0-9\\\-()+.:# ]|(x|ext|extension))*$/,
+							value: /^([0-9\\\-()+.:# ])*$/,
 							message: "Please enter a valid phone number",
 						},
 					}}
-					render={({ field: { ref, ...field } }) => <Input {...field} type="tel" ref={ref} />}
+					render={({ field: { ref, ...field } }) => <Input {...field} maxLength={12} type="tel" ref={ref} />}
 				/>
 			</FormInput>
 
