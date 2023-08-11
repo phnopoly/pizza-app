@@ -1,10 +1,10 @@
-type EventLocationFDValTypes = string | number | boolean | null | undefined
-interface RegistrationFormData extends Record<string, EventLocationFDValTypes> {
+type RegistrationFormDataValueTypes = string | undefined
+interface RegistrationFormData extends Record<string, RegistrationFormDataValueTypes> {
 	firstName: string
 	lastName: string
-	phoneNumber?: string
 	email: string
 	password: string
-	hearAboutUs?: string
+	phoneNumber?: string
 	birthday: string
+	hearAboutUs?: string
 }
