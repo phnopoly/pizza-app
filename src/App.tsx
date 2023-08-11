@@ -6,6 +6,7 @@ import { Image } from "@chakra-ui/react"
 import React from "react"
 import { Layout } from "./components/Layout"
 import LoginForm from "./components/LoginForm"
+import PageFooter from "./components/PageFooter"
 
 export type PageState = "mainMenu" | "myOrders" | "placeOrder" | "login" | "registration"
 export type UseStateReturnNoUndefined<T> = [T, React.Dispatch<React.SetStateAction<T>>]
@@ -41,6 +42,7 @@ const App = () => {
 				) : (
 					<RegistrationForm />
 				)}
+				<PageFooter />
 			</PageContext.Provider>
 		</Layout>
 	)
