@@ -34,7 +34,7 @@ const App = () => {
 				{pageState === "mainMenu" ? (
 					<Image
 						gridColumn="1/-1"
-						src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80s"
+						src="https://images.pexels.com/photos/10790638/pexels-photo-10790638.jpeg"
 						alt="Spotlight Pizza"
 					></Image>
 				) : pageState === "login" ? (

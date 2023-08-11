@@ -28,14 +28,14 @@ const OrderForm = () => {
 					Pizza Menu
 				</Text>
 				<FoodCard
-					src="https://tysonscorner.paisanospizza.com/webfile?name=pizza_paulies_thin&hash=1646996444000"
+					src="https://loremflickr.com/300/300/pizza"
 					price={12.99}
 					itemName="Pepperoni Pizza"
 					description="Cheese and Pepperoni."
 					gridColumn="1/6"
 				/>
 				<FoodCard
-					src="https://tysonscorner.paisanospizza.com/webfile?name=pizza_supreme&hash=1646997947000"
+					src="https://loremflickr.com/300/300/pizza"
 					price={12.99}
 					itemName="Supreme Pizza"
 					description="Cheese, Pepperoni, Sausage, Ham, Onions, Meatballs, Mushrooms and Green Peppers."
