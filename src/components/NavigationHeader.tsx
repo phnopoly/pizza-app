@@ -15,12 +15,26 @@ import {
 	useColorModeValue,
 	useDisclosure,
 } from "@chakra-ui/react"
-import React, { useContext } from "react"
+import { useWindowSize } from "@uidotdev/usehooks"
+import React, { useContext, useEffect, useState } from "react"
 import { PageContext, PageState, UseStateReturnNoUndefined } from "../App"
 
 const NavigationHeader = () => {
 	const { setPageState, user, setUser } = useContext(PageContext)
 	const { isOpen, onOpen, onClose } = useDisclosure()
+	const [showAddress, setShowAddress] = useState<boolean>(true)
+
+	const windowSize = useWindowSize()
+
+	useEffect(() => {
+		if (windowSize.width) {
+			if (windowSize.width >= 1024 && !showAddress) {
+				setShowAddress(true)
+			} else if (windowSize.width < 1024 && showAddress) {
+				setShowAddress(false)
+			}
+		}
+	}, [windowSize.width, showAddress])
 
 	return (
 		<Box gridColumn="1/-1" className="navigator" bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -57,7 +71,7 @@ const NavigationHeader = () => {
 						</MenuList>
 					</Menu>
 				) : (
-					<Text>{"168 Maverick Via, Donnystad, VA 01257"}</Text>
+					showAddress && <Text>{"168 Maverick Via, Donnystad, VA 01257"}</Text>
 				)}
 			</Flex>
 
