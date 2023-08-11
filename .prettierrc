@@ -4,6 +4,9 @@
     "bracketSpacing": true,
     "jsxSingleQuote": false,
     "parser": "typescript",
+    "plugins": [
+        "prettier-plugin-organize-imports"
+    ],
     "printWidth": 120,
     "quoteProps": "consistent",
     "semi": false,

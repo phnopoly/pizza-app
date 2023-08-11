@@ -1,11 +1,10 @@
-import { useCallback, useContext } from "react"
-import { Button, Text, Input, chakra } from "@chakra-ui/react"
-import React from "react"
-import { FormProvider, useForm, Controller } from "react-hook-form"
-import Form from "./Form"
+import { Button, Input, Text, chakra } from "@chakra-ui/react"
+import React, { useCallback, useContext } from "react"
+import { Controller, FormProvider, useForm } from "react-hook-form"
 import { PageContext } from "../App"
-import { FormInput } from "./FormInput"
 import { getValidationState } from "../utils"
+import Form from "./Form"
+import { FormInput } from "./FormInput"
 
 const defaultFormValues: LoginFormData = {
 	email: "",

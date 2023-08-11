@@ -1,7 +1,7 @@
-import React from "react"
-import SEO from "./SEO"
 import { Grid } from "@chakra-ui/react"
-import { responsiveGridEdges, responsiveGridColumns } from "../utils"
+import React from "react"
+import { responsiveGridColumns, responsiveGridEdges } from "../utils"
+import SEO from "./SEO"
 
 interface BodyProps {
 	/**

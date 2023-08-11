@@ -1,13 +1,12 @@
-import "./app.css"
-import { createContext, useState } from "react"
-import RegistrationForm from "./components/RegistrationForm"
-import NavigationHeader from "./components/NavigationHeader"
 import { Image } from "@chakra-ui/react"
-import React from "react"
+import React, { createContext, useState } from "react"
+import "./app.css"
 import { Layout } from "./components/Layout"
 import LoginForm from "./components/LoginForm"
-import PageFooter from "./components/PageFooter"
+import NavigationHeader from "./components/NavigationHeader"
 import OrderForm from "./components/OrderForm"
+import PageFooter from "./components/PageFooter"
+import RegistrationForm from "./components/RegistrationForm"
 
 export type PageState = "mainMenu" | "orderNow" | "placeOrder" | "login" | "registration"
 export type UseStateReturnNoUndefined<T> = [T, React.Dispatch<React.SetStateAction<T>>]

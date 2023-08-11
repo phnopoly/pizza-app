@@ -1,12 +1,11 @@
-import { createContext, useCallback, useContext } from "react"
-import SuccessModal from "./SuccessModal"
-import { Button, Stack, useDisclosure, Text } from "@chakra-ui/react"
-import React from "react"
+import { Button, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import React, { createContext, useCallback, useContext } from "react"
 import { FormProvider, useForm } from "react-hook-form"
-import Form from "./Form"
-import { responsiveGridEdges } from "../utils"
 import { PageContext } from "../App"
+import { responsiveGridEdges } from "../utils"
+import Form from "./Form"
 import RegistrationFormBody from "./RegistrationFormBody"
+import SuccessModal from "./SuccessModal"
 
 type RegistrationFormContextType = {
 	isOpen: boolean

@@ -1,10 +1,9 @@
+import { ChakraProvider, extendTheme } from "@chakra-ui/react"
+import { StyleFunctionProps, mode } from "@chakra-ui/theme-tools"
 import React from "react"
 import ReactDOM from "react-dom/client"
-import reportWebVitals from "./reportWebVitals"
-import { ChakraProvider } from "@chakra-ui/react"
-import { StyleFunctionProps, mode } from "@chakra-ui/theme-tools"
-import { extendTheme } from "@chakra-ui/react"
 import App from "./App"
+import reportWebVitals from "./reportWebVitals"
 
 const theme = extendTheme({
 	initialColorMode: "light",

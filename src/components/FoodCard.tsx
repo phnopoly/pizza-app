@@ -1,4 +1,4 @@
-import { Button, Text, Card, CardBody, CardFooter, Heading, Stack, Image, Divider, ButtonGroup } from "@chakra-ui/react"
+import { Button, ButtonGroup, Card, CardBody, CardFooter, Divider, Heading, Image, Stack, Text } from "@chakra-ui/react"
 import React from "react"
 
 interface FoodCardProps {

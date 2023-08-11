@@ -1,20 +1,20 @@
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons"
 import {
 	Box,
+	Button,
 	Flex,
 	HStack,
-	Text,
 	IconButton,
-	Button,
 	Menu,
 	MenuButton,
-	MenuList,
-	MenuItem,
 	MenuDivider,
-	useDisclosure,
-	useColorModeValue,
+	MenuItem,
+	MenuList,
 	Stack,
+	Text,
+	useColorModeValue,
+	useDisclosure,
 } from "@chakra-ui/react"
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import React, { useContext } from "react"
 import { PageContext, PageState, UseStateReturnNoUndefined } from "../App"
 

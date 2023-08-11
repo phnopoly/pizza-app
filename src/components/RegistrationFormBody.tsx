@@ -1,8 +1,8 @@
 import { Input, Select } from "@chakra-ui/react"
 import React from "react"
-import { FormInput } from "./FormInput"
 import { Controller, useFormContext } from "react-hook-form"
 import { getValidationState } from "../utils"
+import { FormInput } from "./FormInput"
 
 const RegistrationFormBody = () => {
 	const leftFieldGridCol = { base: "1/-1", md: "1/5", lg: "1/7" }

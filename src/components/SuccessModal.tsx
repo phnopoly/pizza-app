@@ -1,17 +1,17 @@
 import {
 	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
 	ModalBody,
-	ModalFooter,
 	ModalCloseButton,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
+	ModalOverlay,
 	Text,
 } from "@chakra-ui/react"
 import React, { useContext } from "react"
-import { RegistrationFormContext } from "./RegistrationForm"
-import { PageContext } from "../App"
 import { useFormContext } from "react-hook-form"
+import { PageContext } from "../App"
+import { RegistrationFormContext } from "./RegistrationForm"
 
 const SuccessModal = () => {
 	const { isOpen, onClose } = useContext(RegistrationFormContext)

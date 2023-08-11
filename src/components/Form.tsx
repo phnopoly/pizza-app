@@ -1,6 +1,6 @@
 import { Grid, useColorModeValue } from "@chakra-ui/react"
 import React from "react"
-import { responsiveGridEdges, responsiveGridColumns } from "../utils"
+import { responsiveGridColumns, responsiveGridEdges } from "../utils"
 
 type FormProps<T = HTMLDivElement & HTMLFormElement> = React.FormHTMLAttributes<T> & React.RefAttributes<T>
 

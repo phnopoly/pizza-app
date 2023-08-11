@@ -1,9 +1,8 @@
-import { useCallback } from "react"
 import { Button, Text, chakra } from "@chakra-ui/react"
-import React from "react"
+import React, { useCallback } from "react"
 import { FormProvider, useForm } from "react-hook-form"
-import Form from "./Form"
 import FoodCard from "./FoodCard"
+import Form from "./Form"
 
 const defaultFormValues: OrderFormData = {
 	email: "",

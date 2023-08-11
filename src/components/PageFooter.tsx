@@ -1,7 +1,6 @@
 import { Box, chakra, Container, Stack, Text, useColorModeValue, VisuallyHidden } from "@chakra-ui/react"
+import React, { ReactNode } from "react"
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa"
-import { ReactNode } from "react"
-import React from "react"
 
 const Logo = () => {
 	return (
