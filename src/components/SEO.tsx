@@ -60,7 +60,6 @@ const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], tit
 				lang,
 			}}
 			title={title}
-			titleTemplate={`%s | ${site.siteMetadata.title}`}
 			meta={metaDefaults.concat(meta)}
 		/>
 	)
