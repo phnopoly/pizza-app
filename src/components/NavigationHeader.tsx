@@ -1,8 +1,8 @@
 import {
 	Box,
 	Flex,
-	Avatar,
 	HStack,
+	Text,
 	IconButton,
 	Button,
 	Menu,
@@ -16,20 +16,11 @@ import {
 } from "@chakra-ui/react"
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons"
 import React, { useContext } from "react"
-import { PageContext } from "../App"
+import { PageContext, PageState, UseStateReturnNoUndefined } from "../App"
 
 const NavigationHeader = () => {
-	const { setPageState } = useContext(PageContext)
+	const { setPageState, user, setUser } = useContext(PageContext)
 	const { isOpen, onOpen, onClose } = useDisclosure()
-
-	const links = [
-		{ label: "My Orders", onClick: null },
-		{ label: "Sign In", onClick: null },
-		{
-			label: "Sign Up",
-			onClick: () => setPageState("registration"),
-		},
-	]
 
 	return (
 		<Box gridColumn="1/-1" className="navigator" bg={useColorModeValue("gray.100", "gray.900")} px={4}>
@@ -43,35 +34,37 @@ const NavigationHeader = () => {
 				/>
 				<HStack spacing={0} alignItems="center">
 					<HStack as="nav" spacing={4} display={{ base: "none", md: "flex" }}>
-						{links.map(link => (
-							<NavLink key={link.label} onClick={link.onClick}>
-								{link.label}
-							</NavLink>
-						))}
+						{displayNavLinks(setPageState, user)}
 					</HStack>
 				</HStack>
-				<Flex>
+				{user ? (
 					<Menu>
-						<MenuButton as={Button} rounded="full" variant="link" cursor="pointer" mb="0px">
-							<Avatar size="sm" src="/img/profilePic3.jpg" mb="0px" />
+						<MenuButton
+							as={Button}
+							color="inherit"
+							fontWeight="normal"
+							rounded="full"
+							variant="link"
+							cursor="pointer"
+							mb="0px"
+						>
+							{`Hi ${user.firstName}!`}
 						</MenuButton>
 						<MenuList>
 							<MenuItem>Account Settings</MenuItem>
 							<MenuDivider />
-							<MenuItem>Log Out</MenuItem>
+							<MenuItem onClick={() => setUser(undefined)}>Log Out</MenuItem>
 						</MenuList>
 					</Menu>
-				</Flex>
+				) : (
+					<Text>{"168 Maverick Via, Donnystad, VA 01257"}</Text>
+				)}
 			</Flex>
 
 			{isOpen ? (
 				<Box pb="4px" display={{ md: "none" }}>
 					<Stack as="nav" spacing="4px">
-						{links.map(link => (
-							<NavLink key={link.label} onClick={link.onClick}>
-								{link.label}
-							</NavLink>
-						))}
+						{displayNavLinks(setPageState, user)}
 					</Stack>
 				</Box>
 			) : null}
@@ -79,6 +72,28 @@ const NavigationHeader = () => {
 	)
 }
 
+const displayNavLinks = (setPageState: UseStateReturnNoUndefined<PageState>[1], user?: RegistrationFormData) => {
+	const linkButtons = [
+		{ label: "My Orders", onClick: null, conditionalDisplay: false },
+		{ label: "Sign In", onClick: () => setPageState("login"), conditionalDisplay: true },
+		{
+			label: "Sign Up",
+			onClick: () => setPageState("registration"),
+			conditionalDisplay: true,
+		},
+	]
+
+	return linkButtons.map(linkButton => {
+		const display = !linkButton.conditionalDisplay || (linkButton.conditionalDisplay && !user)
+		return (
+			display && (
+				<NavLink key={linkButton.label} onClick={linkButton.onClick}>
+					{linkButton.label}
+				</NavLink>
+			)
+		)
+	})
+}
 const NavLink = (p: any) => (
 	<Box
 		as="button"

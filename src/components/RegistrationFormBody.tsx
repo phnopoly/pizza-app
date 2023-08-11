@@ -1,7 +1,8 @@
 import { Input, Select } from "@chakra-ui/react"
 import React from "react"
 import { FormInput } from "./FormInput"
-import { Controller, useFormContext, FieldErrors } from "react-hook-form"
+import { Controller, useFormContext } from "react-hook-form"
+import { getValidationState } from "../utils"
 
 const RegistrationFormBody = () => {
 	const leftFieldGridCol = { base: "1 / -1", md: "1 / 5", lg: "1 / 7" }
@@ -9,12 +10,15 @@ const RegistrationFormBody = () => {
 	const { control, formState } = useFormContext<RegistrationFormData>()
 	const { errors } = formState
 
-	const getValidationState = (fieldErrors: FieldErrors<RegistrationFormData> | undefined, field: string): boolean =>
-		fieldErrors?.[field] ? true : false
-
 	return (
 		<>
-			<FormInput gridColumn={leftFieldGridCol} labelText="First Name" labelId="firstName" required>
+			<FormInput
+				gridColumn={leftFieldGridCol}
+				labelText="First Name"
+				labelId="firstName"
+				errorMessage={errors.firstName?.message}
+				required
+			>
 				<Controller
 					name="firstName"
 					control={control}
@@ -28,28 +32,28 @@ const RegistrationFormBody = () => {
 				/>
 			</FormInput>
 
-			<FormInput gridColumn={rightFieldGridCol} labelText="Last Name" labelId="lastName" required>
+			<FormInput
+				gridColumn={rightFieldGridCol}
+				labelText="Last Name"
+				labelId="lastName"
+				errorMessage={errors.lastName?.message}
+			>
 				<Controller
 					name="lastName"
 					control={control}
-					rules={{
-						required: "Please enter your last name",
-					}}
 					render={({ field: { ref, ...field } }) => (
 						<Input {...field} ref={ref} isInvalid={getValidationState(errors, "lastName")} />
 					)}
 				/>
 			</FormInput>
 
-			<FormInput gridColumn={leftFieldGridCol} labelText="Phone Number" labelId="phoneNumber">
-				<Controller
-					name="phoneNumber"
-					control={control}
-					render={({ field: { ref, ...field } }) => <Input {...field} type="tel" ref={ref} />}
-				/>
-			</FormInput>
-
-			<FormInput gridColumn={rightFieldGridCol} labelText="Email Address" labelId="email" required>
+			<FormInput
+				gridColumn={leftFieldGridCol}
+				labelText="Email Address"
+				labelId="email"
+				errorMessage={errors.email?.message}
+				required
+			>
 				<Controller
 					name="email"
 					control={control}
@@ -59,6 +63,81 @@ const RegistrationFormBody = () => {
 					}}
 					render={({ field: { ref, ...field } }) => (
 						<Input {...field} type="email" ref={ref} isInvalid={getValidationState(errors, "email")} />
+					)}
+				/>
+			</FormInput>
+
+			<FormInput
+				gridColumn={rightFieldGridCol}
+				labelText="Password"
+				labelId="password"
+				errorMessage={errors.password?.message}
+				required
+			>
+				<Controller
+					name="password"
+					control={control}
+					rules={{
+						required: "Please enter a valid password",
+						pattern: {
+							value: /^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{12,}$/,
+							message: "Password must have 1 upper, 1 lower, and 1 digit",
+						},
+						minLength: {
+							value: 12,
+							message: "Password must be between 12 and 30 characters",
+						},
+						maxLength: {
+							value: 30,
+							message: "Password must be between 12 and 30 characters",
+						},
+					}}
+					render={({ field: { ref, ...field } }) => (
+						<Input
+							{...field}
+							type="password"
+							ref={ref}
+							isInvalid={getValidationState(errors, "password")}
+						/>
+					)}
+				/>
+			</FormInput>
+
+			<FormInput
+				gridColumn={leftFieldGridCol}
+				labelText="Mobile Number"
+				errorMessage={errors.phoneNumber?.message}
+				labelId="phoneNumber"
+			>
+				<Controller
+					name="phoneNumber"
+					control={control}
+					rules={{
+						pattern: {
+							value: /^([0-9\\\-()+.:# ]|(x|ext|extension))*$/,
+							message: "Please enter a valid phone number",
+						},
+					}}
+					render={({ field: { ref, ...field } }) => <Input {...field} type="tel" ref={ref} />}
+				/>
+			</FormInput>
+
+			<FormInput
+				gridColumn={rightFieldGridCol}
+				labelText="Date of Birth"
+				labelId="birthday"
+				errorMessage={errors.birthday?.message}
+				required
+			>
+				<Controller
+					name="birthday"
+					control={control}
+					rules={{
+						required: "Please enter your birthday",
+						max: new Date().toISOString().split("T")[0],
+					}}
+					render={({ field: { ref, ...field } }) => (
+						<Input {...field} type="date" ref={ref} isInvalid={getValidationState(errors, "birthday")} />
 					)}
 				/>
 			</FormInput>
@@ -77,20 +156,6 @@ const RegistrationFormBody = () => {
 							<option value="friend">Friend's Suggestion</option>
 							<option value="other">Other</option>
 						</Select>
-					)}
-				/>
-			</FormInput>
-
-			<FormInput gridColumn={rightFieldGridCol} labelText="Date of Birth" labelId="birthday" required>
-				<Controller
-					name="birthday"
-					control={control}
-					rules={{
-						required: "Please enter your birthday",
-						max: new Date().toISOString().split("T")[0],
-					}}
-					render={({ field: { ref, ...field } }) => (
-						<Input {...field} type="date" ref={ref} isInvalid={getValidationState(errors, "birthday")} />
 					)}
 				/>
 			</FormInput>

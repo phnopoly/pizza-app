@@ -28,7 +28,7 @@ export const RegistrationFormContext = createContext<RegistrationFormContextType
 const RegistrationForm = () => {
 	const { isOpen, onClose, onOpen } = useDisclosure()
 
-	const { setPageState } = useContext(PageContext)
+	const { setPageState, setUsers, setUser } = useContext(PageContext)
 	const formMethods = useForm<RegistrationFormData>({
 		defaultValues: defaultFormValues,
 	})
@@ -40,7 +40,8 @@ const RegistrationForm = () => {
 	}
 
 	const onSubmit = useCallback((data: RegistrationFormData) => {
-		console.log(JSON.stringify(data))
+		setUsers(currData => [...currData, data])
+		setUser(data)
 		onOpen()
 	}, [])
 

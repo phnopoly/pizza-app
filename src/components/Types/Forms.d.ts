@@ -8,3 +8,9 @@ interface RegistrationFormData extends Record<string, RegistrationFormDataValueT
 	birthday: string
 	hearAboutUs?: string
 }
+
+type LoginFormDataValueTypes = string | undefined
+interface LoginFormData extends Record<string, LoginFormDataValueTypes> {
+	email: string
+	password: string
+}
