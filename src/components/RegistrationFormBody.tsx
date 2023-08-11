@@ -5,8 +5,8 @@ import { Controller, useFormContext } from "react-hook-form"
 import { getValidationState } from "../utils"
 
 const RegistrationFormBody = () => {
-	const leftFieldGridCol = { base: "1 / -1", md: "1 / 5", lg: "1 / 7" }
-	const rightFieldGridCol = { base: "1 / -1", md: "5 / -1", lg: "7 / -1" }
+	const leftFieldGridCol = { base: "1/-1", md: "1/5", lg: "1/7" }
+	const rightFieldGridCol = { base: "1/-1", md: "5/-1", lg: "7/-1" }
 	const { control, formState } = useFormContext<RegistrationFormData>()
 	const { errors } = formState
 

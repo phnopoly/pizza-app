@@ -74,7 +74,7 @@ const NavigationHeader = () => {
 
 const displayNavLinks = (setPageState: UseStateReturnNoUndefined<PageState>[1], user?: RegistrationFormData) => {
 	const linkButtons = [
-		{ label: "My Orders", onClick: null, conditionalDisplay: false },
+		{ label: "My Orders", onClick: () => setPageState("orderNow"), conditionalDisplay: false },
 		{ label: "Sign In", onClick: () => setPageState("login"), conditionalDisplay: true },
 		{
 			label: "Sign Up",

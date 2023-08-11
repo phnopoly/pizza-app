@@ -9,7 +9,7 @@ const Form: React.FC<FormProps> = p => {
 	return (
 		<Grid
 			as="form"
-			gridColumn="1 / -1"
+			gridColumn="1/-1"
 			bg={useColorModeValue("gray.100", "gray.900")}
 			className="form-container"
 			gridGap={responsiveGridEdges}

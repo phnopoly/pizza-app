@@ -13,7 +13,7 @@ const defaultFormValues: LoginFormData = {
 }
 
 const LoginForm = () => {
-	const gridCol = { base: "1 / -1", md: "1 / 5", lg: "1 / 7" }
+	const gridCol = { base: "1/-1", md: "1/5", lg: "1/7" }
 
 	const { users, setUser, setPageState } = useContext(PageContext)
 	const formMethods = useForm<LoginFormData>({
@@ -36,7 +36,7 @@ const LoginForm = () => {
 	return (
 		<FormProvider {...formMethods}>
 			<Form onSubmit={handleSubmit(data => onSubmit(data))}>
-				<Text fontSize="xl" gridColumn="1 / -1">
+				<Text fontSize="xl" gridColumn="1/-1">
 					Sign In
 				</Text>
 
