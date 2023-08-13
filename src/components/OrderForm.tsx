@@ -12,15 +12,25 @@ const defaultFormValues: OrderFormData = {
 }
 
 const OrderForm = () => {
-	// const { users, setUser, setPageState } = useContext(PageContext)
+	// const { setPageState } = useContext(PageContext)
 	const formMethods = useForm<OrderFormData>({
 		defaultValues: defaultFormValues,
 	})
 	const { handleSubmit } = formMethods
 
 	const onSubmit = useCallback((data: OrderFormData) => {
-		console.log(data)
+		fetch("http://localhost:5500/create-checkout-session", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(data.items),
+		})
+			.then(async res => (res.ok ? res.json() : res.json().then(json => Promise.reject(json))))
+			.then(({ url }) => (window.location = url))
+			.catch(e => console.error(e.error))
 	}, [])
+	const src = "https://loremflickr.com/300/300/pizza"
 	return (
 		<FormProvider {...formMethods}>
 			<Form onSubmit={handleSubmit(data => onSubmit(data))}>
@@ -28,14 +38,14 @@ const OrderForm = () => {
 					Pizza Menu
 				</Text>
 				<FoodCard
-					src="https://loremflickr.com/300/300/pizza"
-					price={12.99}
+					src={src}
+					price={10.99}
 					itemName="Pepperoni Pizza"
 					description="Cheese and Pepperoni."
 					gridColumn="1/6"
 				/>
 				<FoodCard
-					src="https://loremflickr.com/300/300/pizza"
+					src={src}
 					price={12.99}
 					itemName="Supreme Pizza"
 					description="Cheese, Pepperoni, Sausage, Ham, Onions, Meatballs, Mushrooms and Green Peppers."

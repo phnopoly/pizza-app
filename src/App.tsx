@@ -6,9 +6,10 @@ import LoginForm from "./components/LoginForm"
 import NavigationHeader from "./components/NavigationHeader"
 import OrderForm from "./components/OrderForm"
 import PageFooter from "./components/PageFooter"
+import PaymentForm from "./components/PaymentForm"
 import RegistrationForm from "./components/RegistrationForm"
 
-export type PageState = "mainMenu" | "orderNow" | "placeOrder" | "login" | "registration"
+export type PageState = "mainMenu" | "orderNow" | "placeOrder" | "payment" | "login" | "registration"
 export type UseStateReturnNoUndefined<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 
 type PageContextType = {
@@ -41,6 +42,8 @@ const App = () => {
 					<LoginForm />
 				) : pageState === "orderNow" ? (
 					<OrderForm />
+				) : pageState === "payment" ? (
+					<PaymentForm />
 				) : (
 					<RegistrationForm />
 				)}

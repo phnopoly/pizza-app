@@ -15,10 +15,16 @@ interface LoginFormData extends Record<string, LoginFormDataValueTypes> {
 	password: string
 }
 
-type OrderFormDataValueTypes = string | Date | OrderItem[] | undefined
+type OrderFormDataValueTypes = string | Date | OrderItem_Client[] | undefined
 interface OrderFormData extends Record<string, OrderFormDataValueTypes> {
 	email: string
-	items: OrderItem[]
+	items: OrderItem_Client[]
 	orderPlacedDate?: Date
 	orderReadyByDate?: Date
+}
+
+type PaymentFormDataValueTypes = string | undefined
+interface PaymentFormData extends Record<string, PaymentFormDataValueTypes> {
+	name: string
+	email: string
 }

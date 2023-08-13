@@ -3,8 +3,15 @@ type PizzaType = (typeof pizzaTypes)[number]
 type PizzaToppingQuantity = (typeof pizzaToppingQuantities)[number]
 type PizzaSize = (typeof pizzaSizes)[number]
 
-interface OrderItem {
-	cost: number
+interface OrderItem_Client {
+	name: string
+	quantity: number
+}
+
+interface OrderItem_Server {
+	id: number
+	name: string
+	price: number
 }
 
 interface Pizza extends OrderItem {
