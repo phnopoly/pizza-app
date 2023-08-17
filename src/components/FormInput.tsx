@@ -1,5 +1,5 @@
 import { FormControl, FormHelperText, FormLabel, Text } from "@chakra-ui/react"
-import * as React from "react"
+import React from "react"
 
 interface FormInputProps {
 	labelText: string

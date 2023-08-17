@@ -10,8 +10,8 @@ const defaultFormValues: LoginFormData = {
 	email: "",
 	password: ""
 }
-
-const LoginForm = () => {
+ 
+const LoginForm : React.FC= () => {
 	const gridCol = { base: "1/-1", md: "1/5", lg: "1/7" }
 
 	const { users, setUser, setPageState } = useContext(PageContext)

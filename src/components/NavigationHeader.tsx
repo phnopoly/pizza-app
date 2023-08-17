@@ -19,7 +19,7 @@ import { useWindowSize } from "@uidotdev/usehooks"
 import React, { useContext, useEffect, useState } from "react"
 import { PageContext, type PageState, type UseStateReturnNoUndefined } from "../App"
 
-const NavigationHeader = () => {
+const NavigationHeader: React.FC = () => {
 	const { setPageState, user, setUser } = useContext(PageContext)
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const [showAddress, setShowAddress] = useState<boolean>(true)
