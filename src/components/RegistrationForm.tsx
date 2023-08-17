@@ -1,75 +1,85 @@
-import { ChangeEventHandler, FormEventHandler, createContext, useEffect, useState } from "react"
+import { Button, Stack, Text, useDisclosure } from "@chakra-ui/react"
+import React, { createContext, useCallback, useContext } from "react"
+import { FormProvider, useForm } from "react-hook-form"
+import { PageContext } from "../App"
+import { responsiveGridEdges } from "../utils"
+import Form from "./Form"
 import RegistrationFormBody from "./RegistrationFormBody"
 import SuccessModal from "./SuccessModal"
-import { chakra, useDisclosure } from "@chakra-ui/react"
-import React from "react"
 
-const defaultFormValues = {
+interface RegistrationFormContextType {
+	isOpen: boolean
+	onClose: ReturnType<typeof useDisclosure>["onClose"]
+}
+
+const defaultFormValues: RegistrationFormData = {
 	firstName: "",
 	lastName: "",
 	phoneNumber: "",
 	email: "",
 	password: "",
 	hearAboutUs: "",
-	birthday: "",
-}
-
-type RegistrationFormContextType = {
-	values: RegistrationFormData
-	isOpen: boolean
-	isSubmitted: boolean
-	onClose: ReturnType<typeof useDisclosure>["onClose"]
-	handleSubmit: FormEventHandler<HTMLFormElement>
-	handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>
+	birthday: ""
 }
 
 export const RegistrationFormContext = createContext<RegistrationFormContextType>({} as RegistrationFormContextType)
 
-const RegistrationForm = () => {
-	const [isSubmitted, setSubmitted] = useState<boolean>(false)
-	const [isValid, setValid] = useState<boolean>(false)
-	const { isOpen, onOpen, onClose } = useDisclosure()
+const RegistrationForm: React.FC = () => {
+	const { isOpen, onClose, onOpen } = useDisclosure()
 
-	useEffect(() => {
-		isValid && onOpen()
-	}, [isValid, onOpen])
-
-	const [values, setValues] = useState(defaultFormValues)
-
-	const handleInputChange: React.ChangeEventHandler<HTMLInputElement | HTMLSelectElement> = event => {
-		event.preventDefault()
-
-		const { name, value } = event.target
-		setValues(values => ({
-			...values,
-			[name]: value,
-		}))
-	}
-
-	const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
-		e.preventDefault()
-		setSubmitted(true)
-		if (values.firstName && values.phoneNumber && values.email && values.password && values.birthday) {
-			setValid(true)
-		}
-	}
+	const { setPageState, setUsers, setUser } = useContext(PageContext)
+	const formMethods = useForm<RegistrationFormData>({
+		defaultValues: defaultFormValues
+	})
+	const { handleSubmit } = formMethods
 
 	const contextValue: RegistrationFormContextType = {
-		values,
 		isOpen,
-		isSubmitted,
-		onClose,
-		handleSubmit,
-		handleInputChange,
+		onClose
 	}
 
+	const onSubmit = useCallback((data: RegistrationFormData) => {
+		setUsers(currData => [...currData, data])
+		setUser(data)
+		onOpen()
+	}, [])
+
 	return (
-		<RegistrationFormContext.Provider value={contextValue}>
-			<chakra.div className="form-container">
-				<SuccessModal />
-				<RegistrationFormBody />
-			</chakra.div>
-		</RegistrationFormContext.Provider>
+		<FormProvider {...formMethods}>
+			<RegistrationFormContext.Provider value={contextValue}>
+				<Form
+					onSubmit={handleSubmit(data => {
+						onSubmit(data)
+					})}
+				>
+					<SuccessModal />
+					<Text fontSize="xl" gridColumn="1/-1">
+						{"Raj's Royal Pizza Registration"}
+					</Text>
+					<RegistrationFormBody />
+					<Stack
+						alignSelf="center"
+						direction="row"
+						gridColumn={{ base: "1/-1", md: "5/-1", lg: "7/-1" }}
+						placeContent="end"
+						spacing={responsiveGridEdges}
+					>
+						<Button
+							colorScheme="blue"
+							onClick={() => {
+								setPageState("mainMenu")
+							}}
+							variant="link"
+						>
+							Cancel
+						</Button>
+						<Button colorScheme="blue" type="submit">
+							Submit
+						</Button>
+					</Stack>
+				</Form>
+			</RegistrationFormContext.Provider>
+		</FormProvider>
 	)
 }
 

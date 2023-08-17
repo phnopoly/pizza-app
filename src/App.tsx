@@ -1,40 +1,55 @@
+import { Image } from "@chakra-ui/react"
+import React, { createContext, useState } from "react"
 import "./app.css"
-import { createContext, useState } from "react"
-import RegistrationForm from "./components/RegistrationForm"
+import { Layout } from "./components/Layout"
+import LoginForm from "./components/LoginForm"
 import NavigationHeader from "./components/NavigationHeader"
-import { Image, chakra } from "@chakra-ui/react"
-import React from "react"
+import OrderForm from "./components/OrderForm"
+import PageFooter from "./components/PageFooter"
+import PaymentForm from "./components/PaymentForm"
+import RegistrationForm from "./components/RegistrationForm"
 
-export type PageState = "mainMenu" | "myOrders" | "placeOrder" | "login" | "registration"
+export type PageState = "mainMenu" | "orderNow" | "placeOrder" | "payment" | "login" | "registration"
 export type UseStateReturnNoUndefined<T> = [T, React.Dispatch<React.SetStateAction<T>>]
 
-type PageContextType = {
+interface PageContextType {
 	pageState: PageState
 	setPageState: UseStateReturnNoUndefined<PageState>[1]
+	users: RegistrationFormData[]
+	setUsers: UseStateReturnNoUndefined<RegistrationFormData[]>[1]
+	user?: RegistrationFormData
+	setUser: ReturnType<typeof useState<RegistrationFormData>>[1]
 }
 
 export const PageContext = createContext<PageContextType>({} as PageContextType)
 
-const App = () => {
+const App: React.FC = () => {
 	const [pageState, setPageState] = useState<PageState>("mainMenu")
+	const [users, setUsers] = useState<RegistrationFormData[]>([])
+	const [user, setUser] = useState<RegistrationFormData | undefined>(undefined)
 
 	return (
-		<PageContext.Provider value={{ pageState, setPageState }}>
-			<chakra.div>
+		<Layout pageDescription="An app that let's you order pizza!" pageHeading="" pageTitle="Raj's Royal Pizza">
+			<PageContext.Provider value={{ pageState, setPageState, users, setUsers, user, setUser }}>
 				<NavigationHeader />
 				{pageState === "mainMenu" ? (
-					<>
-						<Image src="/img/sampleLogo3.jpg" boxSize="full" alt="Logo"></Image>
-						<Image
-							src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80s"
-							alt="Spotlight Pizza"
-						></Image>
-					</>
+					<Image
+						alt="Spotlight Pizza"
+						gridColumn="1/-1"
+						src="https://images.pexels.com/photos/10790638/pexels-photo-10790638.jpeg"
+					></Image>
+				) : pageState === "login" ? (
+					<LoginForm />
+				) : pageState === "orderNow" ? (
+					<OrderForm />
+				) : pageState === "payment" ? (
+					<PaymentForm />
 				) : (
 					<RegistrationForm />
 				)}
-			</chakra.div>
-		</PageContext.Provider>
+				<PageFooter />
+			</PageContext.Provider>
+		</Layout>
 	)
 }
 
