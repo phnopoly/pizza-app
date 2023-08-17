@@ -16,7 +16,7 @@ const FoodCard: React.FC<FoodCardProps> = (p: FoodCardProps) => {
 	return (
 		<Card gridColumn={gridColumn} maxW="64">
 			<CardBody>
-				<Image src={src} alt="Card Picture" borderRadius="lg" />
+				<Image alt="Card Picture" borderRadius="lg" src={src} />
 				<Stack mt="6" spacing="3">
 					<Heading size="md">{itemName}</Heading>
 					<Text>{description}</Text>
@@ -28,17 +28,18 @@ const FoodCard: React.FC<FoodCardProps> = (p: FoodCardProps) => {
 			<Divider />
 			<CardFooter>
 				<ButtonGroup spacing="2">
-					<Button variant="ghost" colorScheme="blue">
+					<Button colorScheme="blue" variant="ghost">
 						Customize
 					</Button>
 					<Button
+						colorScheme="blue"
 						onClick={() => {
 							const existingItems = getValues().items
 							const index = existingItems.findIndex(item => item.name === itemName)
 							if (index >= 0) {
 								existingItems[index] = {
 									name: itemName,
-									quantity: existingItems[index].quantity + 1,
+									quantity: existingItems[index].quantity + 1
 								}
 								setValue("items", [...existingItems])
 							} else {
@@ -46,13 +47,12 @@ const FoodCard: React.FC<FoodCardProps> = (p: FoodCardProps) => {
 									...existingItems,
 									{
 										name: itemName,
-										quantity: 1,
-									} as OrderItem_Client,
+										quantity: 1
+									} as OrderItem_Client
 								])
 							}
 						}}
 						variant="solid"
-						colorScheme="blue"
 					>
 						Add
 					</Button>

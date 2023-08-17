@@ -1,35 +1,26 @@
-import mongoose from "mongoose"
+// interface MenuItem {
+//     name: string
+//     price: number
+// }
 
-interface MenuItem {
-	// id: number
-	name: string
-	price: number
-}
+// interface MenuItemModel extends mongoose.Model<MenuItemDoc> {
+//     build(attr: MenuItem)
+// }
 
-interface MenuItemModel extends mongoose.Model<MenuItemDoc> {
-	build(attr: MenuItem): MenuItemDoc
-}
-
-interface MenuItemDoc extends mongoose.Document {
-	// id: number
-	name: string
-	price: number
-}
-const menuSchema = new mongoose.Schema({
-	// id: {
-	// 	require: true,
-	// 	type: String,
-	// 	unique: true,
-	// },
-	name: {
-		require: true,
-		type: String,
-	},
-	price: {
-		require: true,
-		type: Number,
-	},
-})
+// interface MenuItemDoc extends mongoose.Document {
+//     name: string
+//     price: number
+// }
+// const menuSchema = new mongoose.Schema({
+//     name: {
+//         require: true,
+//         type: String
+//     },
+//     price: {
+//         require: true,
+//         type: Number
+//     }
+// })
 
 // const userSchema = new mongoose.Schema({
 // 	name: {
@@ -38,8 +29,8 @@ const menuSchema = new mongoose.Schema({
 // 	},
 // })
 
-const Menu = mongoose.model<MenuItemDoc, MenuItemModel>("Menu", menuSchema)
+// const Menu = mongoose.model<MenuItemDoc, MenuItemModel>("Menu", menuSchema)
 // const User = mongoose.model("User", userSchema)
-const models = { Menu }
+// const models = { Menu }
 
-export default models
+// export default models

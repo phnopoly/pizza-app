@@ -1,12 +1,10 @@
-import { Request, Response, Router } from "express"
-import models from "./model"
+import { Router } from "express"
 export const router1 = Router()
 
-router1.get("/api/menuItems", async (_req: Request, res: Response) => {
-	const menuItems = await models.Menu.find({})
-	console.log(menuItems)
-	return res.status(200).send(menuItems)
-})
+// router1.get("/api/menuItems", async (_req: Request, res: Response) => {
+//     const menuItems = await models.Menu.find({})
+//     return res.status(200).send(menuItems)
+// })
 
 // router1.get("/api/users", async (_req: Request, res: Response) => {
 // 	const users = await models.User.find()

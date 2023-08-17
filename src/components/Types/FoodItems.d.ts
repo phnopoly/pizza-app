@@ -19,4 +19,4 @@ interface Pizza extends OrderItem {
 	pizzaSize: PizzaSize
 	pizzaToppings: Set<{ topping: PizzaTopping; quantity: PizzaToppingQuantity }>
 }
-interface Drinks extends OrderItem {}
+// interface Drinks extends OrderItem { }

@@ -1,5 +1,5 @@
 import React from "react"
-import { Helmet } from "react-helmet"
+import { Helmet, HelmetProvider } from "react-helmet-async"
 
 interface SEOProps {
 	description?: string
@@ -13,8 +13,8 @@ const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], tit
 		siteMetadata: {
 			title: "Raj's Royal Pizza",
 			description: "An application to create and order awesome pizzas!",
-			author: "Phong Vo",
-		},
+			author: "Phong Vo"
+		}
 	}
 
 	const metaDescription = description || site.siteMetadata.description
@@ -22,46 +22,48 @@ const SEO: React.FC<SEOProps> = ({ description = "", lang = "en", meta = [], tit
 	const metaDefaults: React.ComponentProps<typeof Helmet>["meta"] = [
 		{
 			name: `description`,
-			content: metaDescription,
+			content: metaDescription
 		},
 		{
 			property: `og:title`,
-			content: title,
+			content: title
 		},
 		{
 			property: `og:description`,
-			content: metaDescription,
+			content: metaDescription
 		},
 		{
 			property: `og:type`,
-			content: `website`,
+			content: `website`
 		},
 		{
 			name: `twitter:card`,
-			content: `summary`,
+			content: `summary`
 		},
 		{
 			name: `twitter:creator`,
-			content: site.siteMetadata.author,
+			content: site.siteMetadata.author
 		},
 		{
 			name: `twitter:title`,
-			content: title,
+			content: title
 		},
 		{
 			name: `twitter:description`,
-			content: metaDescription,
-		},
+			content: metaDescription
+		}
 	]
 
 	return (
-		<Helmet
-			htmlAttributes={{
-				lang,
-			}}
-			title={title}
-			meta={metaDefaults.concat(meta)}
-		/>
+		<HelmetProvider>
+			<Helmet
+				htmlAttributes={{
+					lang
+				}}
+				meta={metaDefaults.concat(meta)}
+				title={title}
+			/>
+		</HelmetProvider>
 	)
 }
 

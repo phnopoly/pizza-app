@@ -13,11 +13,11 @@ import {
 	Stack,
 	Text,
 	useColorModeValue,
-	useDisclosure,
+	useDisclosure
 } from "@chakra-ui/react"
 import { useWindowSize } from "@uidotdev/usehooks"
 import React, { useContext, useEffect, useState } from "react"
-import { PageContext, PageState, UseStateReturnNoUndefined } from "../App"
+import { PageContext, type PageState, type UseStateReturnNoUndefined } from "../App"
 
 const NavigationHeader = () => {
 	const { setPageState, user, setUser } = useContext(PageContext)
@@ -27,7 +27,7 @@ const NavigationHeader = () => {
 	const windowSize = useWindowSize()
 
 	useEffect(() => {
-		if (windowSize.width) {
+		if (windowSize.width != null) {
 			if (windowSize.width >= 1024 && !showAddress) {
 				setShowAddress(true)
 			} else if (windowSize.width < 1024 && showAddress) {
@@ -37,17 +37,17 @@ const NavigationHeader = () => {
 	}, [windowSize.width, showAddress])
 
 	return (
-		<Box gridColumn="1/-1" className="navigator" bg={useColorModeValue("gray.100", "gray.900")} px={4}>
-			<Flex h={16} alignItems="center" justifyContent="space-between">
+		<Box bg={useColorModeValue("gray.100", "gray.900")} className="navigator" gridColumn="1/-1" px={4}>
+			<Flex alignItems="center" h={16} justifyContent="space-between">
 				<IconButton
-					size="md"
-					icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
 					aria-label="Open Menu"
 					display={{ md: "none" }}
+					icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
 					onClick={isOpen ? onClose : onOpen}
+					size="md"
 				/>
-				<HStack spacing={0} alignItems="center">
-					<HStack as="nav" spacing={4} display={{ base: "none", md: "flex" }}>
+				<HStack alignItems="center" spacing={0}>
+					<HStack as="nav" display={{ base: "none", md: "flex" }} spacing={4}>
 						{displayNavLinks(setPageState, user)}
 					</HStack>
 				</HStack>
@@ -56,18 +56,24 @@ const NavigationHeader = () => {
 						<MenuButton
 							as={Button}
 							color="inherit"
+							cursor="pointer"
 							fontWeight="normal"
+							mb="0px"
 							rounded="full"
 							variant="link"
-							cursor="pointer"
-							mb="0px"
 						>
 							{`Hi ${user.firstName}!`}
 						</MenuButton>
 						<MenuList>
 							<MenuItem>Account Settings</MenuItem>
 							<MenuDivider />
-							<MenuItem onClick={() => setUser(undefined)}>Log Out</MenuItem>
+							<MenuItem
+								onClick={() => {
+									setUser(undefined)
+								}}
+							>
+								Log Out
+							</MenuItem>
 						</MenuList>
 					</Menu>
 				) : (
@@ -76,7 +82,7 @@ const NavigationHeader = () => {
 			</Flex>
 
 			{isOpen ? (
-				<Box pb="4px" display={{ md: "none" }}>
+				<Box display={{ md: "none" }} pb="4px">
 					<Stack as="nav" spacing="4px">
 						{displayNavLinks(setPageState, user)}
 					</Stack>
@@ -88,14 +94,34 @@ const NavigationHeader = () => {
 
 const displayNavLinks = (setPageState: UseStateReturnNoUndefined<PageState>[1], user?: RegistrationFormData) => {
 	const linkButtons = [
-		{ label: "Main Menu", onClick: () => setPageState("mainMenu"), conditionalDisplay: false },
-		{ label: "My Orders", onClick: () => setPageState("orderNow"), conditionalDisplay: false },
-		{ label: "Sign In", onClick: () => setPageState("login"), conditionalDisplay: true },
+		{
+			label: "Main Menu",
+			onClick: () => {
+				setPageState("mainMenu")
+			},
+			conditionalDisplay: false
+		},
+		{
+			label: "My Orders",
+			onClick: () => {
+				setPageState("orderNow")
+			},
+			conditionalDisplay: false
+		},
+		{
+			label: "Sign In",
+			onClick: () => {
+				setPageState("login")
+			},
+			conditionalDisplay: true
+		},
 		{
 			label: "Sign Up",
-			onClick: () => setPageState("registration"),
-			conditionalDisplay: true,
-		},
+			onClick: () => {
+				setPageState("registration")
+			},
+			conditionalDisplay: true
+		}
 	]
 
 	return linkButtons.map(linkButton => {
@@ -111,15 +137,15 @@ const displayNavLinks = (setPageState: UseStateReturnNoUndefined<PageState>[1], 
 }
 const NavLink = (p: any) => (
 	<Box
+		_hover={{
+			textDecoration: "none",
+			bg: useColorModeValue("gray.200", "gray.700")
+		}}
 		as="button"
+		onClick={p.onClick}
 		px={2}
 		py={1}
 		rounded="md"
-		_hover={{
-			textDecoration: "none",
-			bg: useColorModeValue("gray.200", "gray.700"),
-		}}
-		onClick={p.onClick}
 		// href="#"
 	>
 		{p.children}

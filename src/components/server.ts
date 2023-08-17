@@ -12,7 +12,7 @@ const stripe = require("stripe")(process.env.STRIPE_PRIVATE_KEY)
 app.use(express.json())
 app.use(
 	cors({
-		origin: process.env.CLIENT_URL,
+		origin: process.env.CLIENT_URL
 	})
 )
 app.use(router1)
@@ -26,12 +26,12 @@ export const db = async () => {
 		console.error(error)
 	}
 }
-db()
+// await db()
 
 // store this on MongoDB
 const menuList: OrderItem_Server[] = [
 	{ id: 0, price: 1099, name: "Pepperoni Pizza" },
-	{ id: 1, price: 1299, name: "Supreme Pizza" },
+	{ id: 1, price: 1299, name: "Supreme Pizza" }
 ]
 
 app.post("/create-checkout-session", async (req, res) => {
@@ -41,11 +41,11 @@ app.post("/create-checkout-session", async (req, res) => {
 			price_data: {
 				currency: "usd",
 				product_data: {
-					name: menuItem.name,
+					name: menuItem.name
 				},
-				unit_amount: menuItem.price,
+				unit_amount: menuItem.price
 			},
-			quantity: orderItem.quantity,
+			quantity: orderItem.quantity
 		}
 	})
 	try {
@@ -54,7 +54,7 @@ app.post("/create-checkout-session", async (req, res) => {
 			mode: "payment",
 			line_items: checkoutItems,
 			success_url: process.env.CLIENT_URL,
-			cancel_url: process.env.CLIENT_URL,
+			cancel_url: process.env.CLIENT_URL
 		})
 		res.json({ url: session.url })
 	} catch (e) {

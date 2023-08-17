@@ -42,14 +42,14 @@ export const Layout: React.FC<LayoutProps> = (p: LayoutProps) => {
 	return (
 		<Grid
 			alignContent="start"
-			gridGap={responsiveGridEdges}
-			gridTemplateColumns={responsiveGridColumns}
-			w={{ base: "full", md: "full", lg: "900px" }}
-			minH="100vh"
-			p="24px"
-			lineHeight="normal"
 			fontFamily="body"
 			fontSize="base"
+			gridGap={responsiveGridEdges}
+			gridTemplateColumns={responsiveGridColumns}
+			lineHeight="normal"
+			minH="100vh"
+			p="24px"
+			w={{ base: "full", md: "full", lg: "900px" }}
 		>
 			<SEO title={pageTitle} />
 			{children}

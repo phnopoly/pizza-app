@@ -17,7 +17,7 @@ export const FormInput: React.FC<FormInputProps> = p => {
 		<FormControl gridColumn={gridColumn}>
 			<FormLabel id={labelId}>
 				{required && (
-					<Text color="required" as="span" display="inline">
+					<Text as="span" color="required" display="inline">
 						*&nbsp;
 					</Text>
 				)}
@@ -26,9 +26,9 @@ export const FormInput: React.FC<FormInputProps> = p => {
 			{React.cloneElement(children, {
 				required,
 				"aria-labelledby": `${labelId} ${children.props["aria-labelledby"] ?? ""}`.trim(),
-				...input,
+				...input
 			})}
-			<FormHelperText color="error" fontSize="error" mt="4px" overflowWrap="normal" w="full" role="alert">
+			<FormHelperText color="error" fontSize="error" mt="4px" overflowWrap="normal" role="alert" w="full">
 				{errorMessage}
 			</FormHelperText>
 		</FormControl>

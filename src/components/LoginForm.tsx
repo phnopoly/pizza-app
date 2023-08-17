@@ -8,7 +8,7 @@ import { FormInput } from "./FormInput"
 
 const defaultFormValues: LoginFormData = {
 	email: "",
-	password: "",
+	password: ""
 }
 
 const LoginForm = () => {
@@ -16,7 +16,7 @@ const LoginForm = () => {
 
 	const { users, setUser, setPageState } = useContext(PageContext)
 	const formMethods = useForm<LoginFormData>({
-		defaultValues: defaultFormValues,
+		defaultValues: defaultFormValues
 	})
 	const { handleSubmit, setError, formState, control } = formMethods
 	const { errors, isSubmitted } = formState
@@ -40,62 +40,62 @@ const LoginForm = () => {
 				</Text>
 
 				<FormInput
-					gridColumn={gridCol}
-					labelText="Email Address"
-					labelId="email"
 					errorMessage={errors.email?.message}
+					gridColumn={gridCol}
+					labelId="email"
+					labelText="Email Address"
 					required
 				>
 					<Controller
-						name="email"
 						control={control}
+						name="email"
+						render={({ field: { ref, ...field } }) => (
+							<Input {...field} isInvalid={getValidationState(errors, "email")} ref={ref} type="email" />
+						)}
 						rules={{
 							required: "Please enter your email address",
-							maxLength: 50,
+							maxLength: 50
 						}}
-						render={({ field: { ref, ...field } }) => (
-							<Input {...field} type="email" ref={ref} isInvalid={getValidationState(errors, "email")} />
-						)}
 					/>
 				</FormInput>
 				<FormInput
-					gridColumn={gridCol}
-					labelText="Password"
-					labelId="password"
 					errorMessage={errors.password?.message}
+					gridColumn={gridCol}
+					labelId="password"
+					labelText="Password"
 					required
 				>
 					<Controller
-						name="password"
 						control={control}
-						rules={{
-							required: "Please enter your password",
-						}}
+						name="password"
 						render={({ field: { ref, ...field } }) => (
 							<Input
 								{...field}
-								type="password"
-								ref={ref}
 								isInvalid={getValidationState(errors, "password")}
+								ref={ref}
+								type="password"
 							/>
 						)}
+						rules={{
+							required: "Please enter your password"
+						}}
 					/>
 				</FormInput>
 				{isSubmitted && (
 					<Text
-						gridColumn="1/-1"
 						color="error"
 						fontSize="error"
+						gridColumn="1/-1"
 						mt={0}
 						overflowWrap="normal"
-						w="full"
 						role="alert"
+						w="full"
 					>
 						{"Email or password is not correct"}
 					</Text>
 				)}
 				<chakra.div gridColumn="1/-1">
-					<Button type="submit" colorScheme="blue">
+					<Button colorScheme="blue" type="submit">
 						Sign In
 					</Button>
 				</chakra.div>
