@@ -135,7 +135,12 @@ const displayNavLinks = (setPageState: UseStateReturnNoUndefined<PageState>[1], 
 		)
 	})
 }
-const NavLink = (p: any) => (
+interface NavLinkProps {
+	onClick: () => void
+	children: React.ReactNode
+}
+
+const NavLink = (p: NavLinkProps) => (
 	<Box
 		_hover={{
 			textDecoration: "none",
