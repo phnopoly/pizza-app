@@ -77,7 +77,7 @@ const NavigationHeader: React.FC = () => {
 						</MenuList>
 					</Menu>
 				) : (
-					showAddress && <Text>{"168 Maverick Via, Donnystad, VA 01257"}</Text>
+					showAddress && <Text>168 Maverick Via, Donnystad, VA 01257</Text>
 				)}
 			</Flex>
 

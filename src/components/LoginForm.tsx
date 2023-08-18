@@ -10,8 +10,8 @@ const defaultFormValues: LoginFormData = {
 	email: "",
 	password: ""
 }
- 
-const LoginForm : React.FC= () => {
+
+const LoginForm: React.FC = () => {
 	const gridCol = { base: "1/-1", md: "1/5", lg: "1/7" }
 
 	const { users, setUser, setPageState } = useContext(PageContext)
@@ -91,7 +91,7 @@ const LoginForm : React.FC= () => {
 						role="alert"
 						w="full"
 					>
-						{"Email or password is not correct"}
+						Email or password is not correct
 					</Text>
 				)}
 				<chakra.div gridColumn="1/-1">
