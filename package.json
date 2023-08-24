@@ -56,7 +56,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject",
-        "server": "nodemon --files src/components/server.ts",
+        "server": "nodemon --files src/server/server.ts",
         "dev": "concurrently \"npm run server \" \"npm run client\" "
     },
     "eslintConfig": {
