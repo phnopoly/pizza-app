@@ -31,6 +31,10 @@
         "strict": true,
         "target": "es2022"
     },
+    "exclude": [
+        "test.tsx",
+        "node_modules"
+    ],
     "include": [
         "src/**/*"
     ]

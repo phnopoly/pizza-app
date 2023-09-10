@@ -11,6 +11,13 @@ const defaultFormValues: OrderFormData = {
 	orderReadyByDate: undefined
 }
 
+type JSONResponse = {
+    data?: {
+      pokemon: Omit<PokemonData, 'fetchedAt'>
+    }
+    errors?: Array<{message: string}>
+  }
+  
 const OrderForm: React.FC = () => {
 	// const { setPageState } = useContext(PageContext)
 	const formMethods = useForm<OrderFormData>({
