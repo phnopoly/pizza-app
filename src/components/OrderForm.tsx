@@ -19,7 +19,7 @@ const OrderForm: React.FC = () => {
 	const { handleSubmit } = formMethods
 
 	const onSubmit = useCallback((data: OrderFormData) => {
-		fetch("http://localhost:5500/create-checkout-session", {
+		fetch("http://localhost:5500/checkout-session", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -28,9 +28,7 @@ const OrderForm: React.FC = () => {
 		})
 			.then(async res => (res.ok ? await res.json() : await res.json().then(json => Promise.reject(json))))
 			.then(({ url }) => (window.location = url))
-			.catch(e => {
-				console.error(e.error)
-			})
+			.catch(e => console.error(e.error))
 	}, [])
 	const src = "https://loremflickr.com/300/300/pizza"
 	return (

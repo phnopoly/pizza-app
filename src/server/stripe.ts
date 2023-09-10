@@ -1,3 +1,4 @@
+import { Request, Response } from "express"
 import Stripe from "stripe"
 import { app } from "./server"
 
@@ -11,7 +12,7 @@ const menuList: OrderItem_Server[] = [
 	{ id: 1, price: 1299, name: "Supreme Pizza" }
 ]
 
-app.post("/create-checkout-session", async (req, res) => {
+const checkoutSessionCallback = async (req: Request, res: Response) => {
 	req.body
 	const checkoutItems = (req.body as OrderItem_Client[]).map((orderItem: OrderItem_Client) => {
 		const menuItem = menuList[menuList.findIndex(cartItem => cartItem.name === orderItem.name)]
@@ -38,4 +39,8 @@ app.post("/create-checkout-session", async (req, res) => {
 	} catch (e) {
 		console.error((e as Error).message)
 	}
-})
+}
+
+export const setupControllers = () => {
+	app.post("/checkout-session", checkoutSessionCallback)
+}
