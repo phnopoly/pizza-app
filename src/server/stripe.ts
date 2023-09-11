@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import Stripe from "stripe"
+import { getMenuItems } from "./controller"
 import { app } from "./server"
 
 const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY as string, {
@@ -7,14 +8,10 @@ const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY as string, {
 	typescript: true
 })
 
-// TODO: load the db here
-const menuList: OrderItem_Server[] = [
-	{ id: 0, price: 1099, name: "Pepperoni Pizza" },
-	{ id: 1, price: 1299, name: "Supreme Pizza" }
-]
-
 const checkoutSessionCallback = async (req: Request, res: Response) => {
-	const checkoutItems = (req.body as OrderItem_Client[]).map((orderItem: OrderItem_Client) => {
+	const menuList = (await getMenuItems()) as OrderItem_Server[]
+
+	const checkoutItems = (req.body as OrderItem_Client[]).map(orderItem => {
 		const menuItem = menuList[menuList.findIndex(cartItem => cartItem.name === orderItem.name)]
 		return {
 			price_data: {
@@ -27,6 +24,7 @@ const checkoutSessionCallback = async (req: Request, res: Response) => {
 			quantity: orderItem.quantity
 		}
 	})
+
 	try {
 		const session = await stripe.checkout.sessions.create({
 			payment_method_types: ["card"],

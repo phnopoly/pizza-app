@@ -5,7 +5,7 @@ const MenuSchema = new Schema<IMenu>(
 		name: { type: String, required: true },
 		price: { type: Number, required: true }
 	},
-	{ collection: "menu" }
+	{ collection: "menu", timestamps: true }
 )
 
 const Menu = model("Menu", MenuSchema)

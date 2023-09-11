@@ -1,10 +1,10 @@
 import { Request, Response, Router } from "express"
-import { client, dbName } from "./server"
+import { client } from "./server"
 
+const dbName = process.env.DB_NAME
 export const router = Router()
 
 router.get("/menuItems", async (_req: Request, res: Response) => {
-	const menuCollection = client.db(dbName).collection("menu")
-	const a = await menuCollection.find().toArray()
-	res.send(a)
+	const menuArray = client.db(dbName).collection("menu").find().toArray()
+	res.send(menuArray)
 })

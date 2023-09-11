@@ -1,6 +1,7 @@
 import { Button, Text, chakra } from "@chakra-ui/react"
 import React, { useCallback } from "react"
 import { FormProvider, useForm } from "react-hook-form"
+import { sendDataToStripe } from "../server/controller"
 import FoodCard from "./FoodCard"
 import Form from "./Form"
 
@@ -12,24 +13,13 @@ const defaultFormValues: OrderFormData = {
 }
 
 const OrderForm: React.FC = () => {
-	// const { setPageState } = useContext(PageContext)
 	const formMethods = useForm<OrderFormData>({
 		defaultValues: defaultFormValues
 	})
 	const { handleSubmit } = formMethods
 
-	const onSubmit = useCallback((data: OrderFormData) => {
-		fetch("http://localhost:5500/checkout-session", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(data.items)
-		})
-			.then(async res => (res.ok ? await res.json() : await res.json().then(json => Promise.reject(json))))
-			.then(({ url }) => (window.location = url))
-			.catch(e => console.error(e.error))
-	}, [])
+	const onSubmit = useCallback((data: OrderFormData) => sendDataToStripe(data), [])
+
 	const src = "https://loremflickr.com/300/300/pizza"
 	return (
 		<FormProvider {...formMethods}>

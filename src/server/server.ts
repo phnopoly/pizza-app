@@ -6,7 +6,6 @@ import { router } from "./routes"
 import { setupStripe } from "./stripe"
 
 export const app = express()
-export const dbName = process.env.DB_NAME
 
 const URI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}\
 @cluster${process.env.CLUSTER_NUMBER}.${process.env.CLUSTER_INSTANCE}\
