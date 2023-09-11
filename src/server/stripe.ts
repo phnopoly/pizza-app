@@ -7,13 +7,13 @@ const stripe = new Stripe(process.env.STRIPE_PRIVATE_KEY as string, {
 	typescript: true
 })
 
+// TODO: load the db here
 const menuList: OrderItem_Server[] = [
 	{ id: 0, price: 1099, name: "Pepperoni Pizza" },
 	{ id: 1, price: 1299, name: "Supreme Pizza" }
 ]
 
 const checkoutSessionCallback = async (req: Request, res: Response) => {
-	req.body
 	const checkoutItems = (req.body as OrderItem_Client[]).map((orderItem: OrderItem_Client) => {
 		const menuItem = menuList[menuList.findIndex(cartItem => cartItem.name === orderItem.name)]
 		return {
@@ -41,6 +41,6 @@ const checkoutSessionCallback = async (req: Request, res: Response) => {
 	}
 }
 
-export const setupControllers = () => {
+export const setupStripe = () => {
 	app.post("/checkout-session", checkoutSessionCallback)
 }

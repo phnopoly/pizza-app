@@ -3,6 +3,11 @@ type PizzaType = (typeof pizzaTypes)[number]
 type PizzaToppingQuantity = (typeof pizzaToppingQuantities)[number]
 type PizzaSize = (typeof pizzaSizes)[number]
 
+interface IMenu extends Document {
+	name: string
+	price: number
+}
+
 interface OrderItem_Client {
 	name: string
 	quantity: number

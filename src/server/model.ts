@@ -1,20 +1,14 @@
-// interface MenuItem {
-//     name: string
-//     price: number
-// }
+import { Schema, model } from "mongoose"
 
-// const menuSchema = new mongoose.Schema({
-//     name: {
-//         require: true,
-//         type: String
-//     },
-//     price: {
-//         require: true,
-//         type: Number
-//     }
-// })
+const MenuSchema = new Schema<IMenu>(
+	{
+		name: { type: String, required: true },
+		price: { type: Number, required: true }
+	},
+	{ collection: "menu" }
+)
 
-// const Menu = mongoose.model<MenuItemDoc, MenuItemModel>("Menu", menuSchema)
-// const models = { Menu }
+const Menu = model("Menu", MenuSchema)
+const models = { Menu }
 
-// export default models
+export default models
