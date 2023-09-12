@@ -24,7 +24,7 @@ const SuccessModal: React.FC = () => {
 			isOpen={isOpen}
 			onClose={() => {
 				onClose()
-				setPageState("mainMenu")
+				setPageState("home")
 			}}
 			size="xs"
 		>

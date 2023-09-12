@@ -25,7 +25,7 @@ const LoginForm: React.FC = () => {
 		const user = users.find(user => user.email === data.email && user.password === data.password)
 		if (user) {
 			setUser(user)
-			setPageState("mainMenu")
+			setPageState("home")
 		} else {
 			setError("email", { type: "focus" })
 			setError("phoneNumber", { type: "focus" })

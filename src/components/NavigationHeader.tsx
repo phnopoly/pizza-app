@@ -95,30 +95,30 @@ const NavigationHeader: React.FC = () => {
 const displayNavLinks = (setPageState: UseStateReturnNoUndefined<PageState>[1], user?: RegistrationFormData) => {
 	const linkButtons = [
 		{
-			label: "Main Menu",
-			onClick: () => {
-				setPageState("mainMenu")
-			},
-			conditionalDisplay: false
-		},
-		{
-			label: "My Orders",
+			label: "Order Now",
 			onClick: () => {
 				setPageState("orderNow")
 			},
 			conditionalDisplay: false
 		},
 		{
+			label: "My Orders",
+			onClick: () => {
+				setPageState("myOrders")
+			},
+			conditionalDisplay: false
+		},
+		{
 			label: "Sign In",
 			onClick: () => {
-				setPageState("login")
+				setPageState("signIn")
 			},
 			conditionalDisplay: true
 		},
 		{
 			label: "Sign Up",
 			onClick: () => {
-				setPageState("registration")
+				setPageState("signUp")
 			},
 			conditionalDisplay: true
 		}

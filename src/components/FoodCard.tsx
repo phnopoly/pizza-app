@@ -16,7 +16,7 @@ const FoodCard: React.FC<FoodCardProps> = (p: FoodCardProps) => {
 	return (
 		<Card gridColumn={gridColumn} maxW="64">
 			<CardBody>
-				<Image alt="Card Picture" borderRadius="lg" src={src} />
+				<Image alt="Card Picture" borderRadius="lg" fit="cover" h="200px" src={src} w="200px" />
 				<Stack mt="6" spacing="3">
 					<Heading size="md">{itemName}</Heading>
 					<Text>{description}</Text>

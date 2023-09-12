@@ -67,7 +67,7 @@ const RegistrationForm: React.FC = () => {
 						<Button
 							colorScheme="blue"
 							onClick={() => {
-								setPageState("mainMenu")
+								setPageState("home")
 							}}
 							variant="link"
 						>
